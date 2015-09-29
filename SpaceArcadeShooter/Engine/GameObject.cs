@@ -13,12 +13,12 @@ namespace Engine
 
         public void Appear()
         {
-            throw new NotImplementedException();
+            // Not implemented.
         }
 
         public void Disappear()
         {
-            throw new NotImplementedException();
+            // Not implemented.
         }
     }    
 }
