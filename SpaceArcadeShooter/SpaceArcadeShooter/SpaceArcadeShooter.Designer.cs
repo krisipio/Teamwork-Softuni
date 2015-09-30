@@ -29,32 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.Plane = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
-            // 
-            // Plane
-            // 
-            this.Plane.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Plane.Location = new System.Drawing.Point(93, 163);
-            this.Plane.Name = "Plane";
-            this.Plane.Size = new System.Drawing.Size(70, 67);
-            this.Plane.TabIndex = 0;
-            this.Plane.Text = "Plane";
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // SpaceArcadeShooter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.Plane);
+            this.ClientSize = new System.Drawing.Size(848, 670);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "SpaceArcadeShooter";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.SpaceArcadeShooter_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.SpaceArcadeShooter_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpaceArcadeShooter_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SpaceArcadeShooter_KeyUp);
             this.ResumeLayout(false);
@@ -62,9 +58,8 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label Plane;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
