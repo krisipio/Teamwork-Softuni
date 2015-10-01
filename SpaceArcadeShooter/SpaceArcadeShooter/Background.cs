@@ -19,7 +19,7 @@ namespace SpaceArcadeShooter
             // Not implemented.
         }
         //Space\Background.jpg
-        public Background(int X, int Y) : base(X,Y, @"Space\Background.jpg")
+        public Background(int X, int Y) : base(X,Y, @"Space\Background0.png")
         {
 
         }

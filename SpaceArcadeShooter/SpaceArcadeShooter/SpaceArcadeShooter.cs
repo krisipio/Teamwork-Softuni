@@ -18,7 +18,7 @@ namespace SpaceArcadeShooter
         private static bool up { get; set; }
         private static bool down { get; set; }
 
-        static Background Space = new Background(0, -6000);
+        static Background Space = new Background(0, -650);
         static Spaceship AirCraft = new Spaceship(350, 400);
         public SpaceArcadeShooter()
         {
@@ -104,6 +104,12 @@ namespace SpaceArcadeShooter
             foreach (var GameObj in GameObject.AllObjects)
             {
                 Image newImage = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\" + GameObj.ImagePath);
+
+                ////http://stackoverflow.com/questions/29417166/out-of-memory-exception-when-working-with-large-images
+                //var fs = new FileStream(Directory.GetCurrentDirectory() + @"\Resources\" + GameObj.ImagePath, FileMode.Open, FileAccess.Read);
+                //var newImage = Image.FromStream(fs);
+                //fs.Dispose();
+
                 e.Graphics.DrawImage(newImage, new Point(GameObj.X, GameObj.Y));
             }
         }
