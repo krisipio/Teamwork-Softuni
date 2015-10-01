@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SpaceArcadeShooter
 {
-    class Spaceship : GameObject
+    class Background : GameObject
     {
-        public int health { get; set; }
-        public int ammoCount { get; set; }
 
         public void Explore()
         {
@@ -20,11 +18,10 @@ namespace SpaceArcadeShooter
         {
             // Not implemented.
         }
-
-        public Spaceship(int X,int Y) : base(X,Y, @"ShipRotation\0001.png")
+        //Space\Background.jpg
+        public Background(int X, int Y) : base(X,Y, @"Space\Background.jpg")
         {
-            health = 100;
-            ammoCount = 100;
+
         }
 
         public void MoveTo(int X, int Y)
@@ -36,11 +33,9 @@ namespace SpaceArcadeShooter
             //    else
             //        X = -50;
             //}
-            if (X > 0 && X < 830 && Y > 0 && Y < 600) //in borders
-            {
-                this.X = X;
-                this.Y = Y;
-            }
+            
+            this.X = X;
+            this.Y = Y;
         }
     }
 }

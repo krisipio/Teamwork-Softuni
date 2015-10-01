@@ -18,13 +18,12 @@ namespace SpaceArcadeShooter
         private static bool up { get; set; }
         private static bool down { get; set; }
 
+        static Background Space = new Background(0, -6000);
         static Spaceship AirCraft = new Spaceship(350, 400);
         public SpaceArcadeShooter()
         {
             InitializeComponent();
-        }
-
-  
+        }  
 
         private void SpaceArcadeShooter_KeyDown(object sender, KeyEventArgs e)
         {
@@ -49,12 +48,12 @@ namespace SpaceArcadeShooter
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.Refresh(); //trigger Paint event
-            if (right == true)
+            if (right)
             {
                 AirCraft.MoveTo(AirCraft.X + 5, AirCraft.Y);
                 AirCraft.ImagePath = @"ShipRotation\0134.png"; //change img Path to right rotation frame
             }
-            if (left == true)
+            if (left)
             {
                 AirCraft.MoveTo(AirCraft.X - 5, AirCraft.Y);
                 AirCraft.ImagePath = @"ShipRotation\0024.png"; //change img Path to left rotation frame
@@ -65,8 +64,11 @@ namespace SpaceArcadeShooter
             }
             if (down)
             {
-                AirCraft.MoveTo(AirCraft.X, AirCraft.Y + 5);
+                AirCraft.MoveTo(AirCraft.X, AirCraft.Y + 5);                
             }
+
+            Space.MoveTo(Space.X, Space.Y + 1);
+
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
@@ -98,7 +100,7 @@ namespace SpaceArcadeShooter
         }
 
         public void SpaceArcadeShooter_Paint(object sender, PaintEventArgs e)
-        {
+        {   
             foreach (var GameObj in GameObject.AllObjects)
             {
                 Image newImage = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\" + GameObj.ImagePath);
