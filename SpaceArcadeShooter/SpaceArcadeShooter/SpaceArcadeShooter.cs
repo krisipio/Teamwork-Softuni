@@ -18,8 +18,8 @@ namespace SpaceArcadeShooter
         private static bool up { get; set; }
         private static bool down { get; set; }
 
-        static Background Space = new Background(0, -650);
-        static Spaceship AirCraft = new Spaceship(350, 400);
+        static Background Space = new Background(0, -6000);
+        static Spaceship AirCraft = new Spaceship(400, 540);
         public SpaceArcadeShooter()
         {
             InitializeComponent();

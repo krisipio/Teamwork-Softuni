@@ -36,7 +36,7 @@ namespace SpaceArcadeShooter
             //    else
             //        X = -50;
             //}
-            if (X > 0 && X < 830 && Y > 0 && Y < 600) //in borders
+            if (X > 0 && X < 780 && Y > 0 && Y < 570) //in borders
             {
                 this.X = X;
                 this.Y = Y;

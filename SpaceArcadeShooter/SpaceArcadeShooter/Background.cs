@@ -19,7 +19,7 @@ namespace SpaceArcadeShooter
             // Not implemented.
         }
         //Space\Background.jpg
-        public Background(int X, int Y) : base(X,Y, @"Space\Background0.png")
+        public Background(int X, int Y) : base(X,Y, @"Space\Background.png")
         {
 
         }
@@ -36,8 +36,7 @@ namespace SpaceArcadeShooter
             
             this.X = X;
             this.Y = Y;
-            if (Y > 0)
-                this.Y = -600;
+            if (Y > -670) this.Y = -6000;
         }
     }
 }
