@@ -18,8 +18,12 @@ namespace SpaceArcadeShooter
         private static bool up { get; set; }
         private static bool down { get; set; }
 
-        static Background Space = new Background(0, -6000);
+        static Background Space = new Background(0, -6000, @"Space\Background.png");
+        static BackgroundStar[] Stars = BackgroundStar.MakeStars();
         static Spaceship AirCraft = new Spaceship(400, 540);
+        
+        
+        
         public SpaceArcadeShooter()
         {
             InitializeComponent();
@@ -71,6 +75,11 @@ namespace SpaceArcadeShooter
 
             Space.MoveTo(Space.X, Space.Y + 1);
 
+            foreach (var star in Stars)
+            {
+                star.Move();
+            }
+
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
@@ -107,13 +116,6 @@ namespace SpaceArcadeShooter
         {   
             foreach (var GameObj in GameObject.AllObjects)
             {
-                
-
-                ////http://stackoverflow.com/questions/29417166/out-of-memory-exception-when-working-with-large-images
-                //var fs = new FileStream(Directory.GetCurrentDirectory() + @"\Resources\" + GameObj.ImagePath, FileMode.Open, FileAccess.Read);
-                //var newImage = Image.FromStream(fs);
-                //fs.Dispose();
-
                 e.Graphics.DrawImage(GameObj.img, new Point(GameObj.X, GameObj.Y));
             }
         }

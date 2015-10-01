@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Background.cs" />
+    <Compile Include="BackgroundStar.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GraphicsHandler.cs" />
     <Compile Include="SpaceArcadeShooter.cs">
