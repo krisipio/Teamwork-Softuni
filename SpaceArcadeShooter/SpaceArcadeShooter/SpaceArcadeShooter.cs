@@ -69,7 +69,7 @@ namespace SpaceArcadeShooter
                 AirCraft.MoveTo(AirCraft.X, AirCraft.Y + 5);                
             }
 
-            Space.MoveTo(Space.X, Space.Y + 5);
+            Space.MoveTo(Space.X, Space.Y + 1);
 
         }
 
