@@ -36,6 +36,8 @@ namespace SpaceArcadeShooter
             
             this.X = X;
             this.Y = Y;
+            if (Y > 0)
+                this.Y = -600;
         }
     }
 }
