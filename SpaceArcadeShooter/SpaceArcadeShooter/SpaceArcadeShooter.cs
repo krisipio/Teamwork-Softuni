@@ -28,21 +28,19 @@ namespace SpaceArcadeShooter
 
         private void SpaceArcadeShooter_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
-                right = true;
-                
+                right = true;                
             }
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
-                left = true;
-                
+                left = true;                
             }
-            if (e.KeyCode == Keys.Up)
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
                 up = true;
             }
-            if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
                 down = true;
             }
@@ -73,21 +71,21 @@ namespace SpaceArcadeShooter
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right)
+            if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
                 right = false;
                 AirCraft.ImagePath = @"ShipRotation\0001.png"; //change img Path to default frame
             }
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
                 left = false;
                 AirCraft.ImagePath = @"ShipRotation\0001.png"; //change img Path to default frame
             }
-            if(e.KeyCode == Keys.Up)
+            if(e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
                 up = false;
             }
-            if(e.KeyCode == Keys.Down)
+            if(e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
                 down = false;
             }

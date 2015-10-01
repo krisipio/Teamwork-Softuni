@@ -11,22 +11,6 @@ namespace SpaceArcadeShooter
         public int health { get; set; }
         public int ammoCount { get; set; }
 
-        public void MoveTo(int X, int Y)
-        {
-            //if(X<-150 || X>1000) //out of borders
-            //{
-            //    if (X < -150)
-            //        X = 850; //go on the other side
-            //    else
-            //        X = -50;
-            //}
-            if (X > 0 && X < 830 && Y>0 && Y<600) //in borders
-            {
-                this.X = X;
-                this.Y = Y;
-            }
-        }
-
         public void Explore()
         {
             // Not implemented.
