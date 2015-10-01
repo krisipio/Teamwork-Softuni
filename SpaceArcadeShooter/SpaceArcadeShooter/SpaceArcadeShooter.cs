@@ -52,11 +52,13 @@ namespace SpaceArcadeShooter
             {
                 AirCraft.MoveTo(AirCraft.X + 5, AirCraft.Y);
                 AirCraft.ImagePath = @"ShipRotation\0134.png"; //change img Path to right rotation frame
+                AirCraft.img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0134.png");
             }
             if (left)
             {
                 AirCraft.MoveTo(AirCraft.X - 5, AirCraft.Y);
                 AirCraft.ImagePath = @"ShipRotation\0024.png"; //change img Path to left rotation frame
+                AirCraft.img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0024.png");
             }
             if (up)
             {
@@ -77,11 +79,13 @@ namespace SpaceArcadeShooter
             {
                 right = false;
                 AirCraft.ImagePath = @"ShipRotation\0001.png"; //change img Path to default frame
+                AirCraft.img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001.png");
             }
             if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
                 left = false;
                 AirCraft.ImagePath = @"ShipRotation\0001.png"; //change img Path to default frame
+                AirCraft.img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001.png");
             }
             if(e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
@@ -103,14 +107,14 @@ namespace SpaceArcadeShooter
         {   
             foreach (var GameObj in GameObject.AllObjects)
             {
-                Image newImage = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\" + GameObj.ImagePath);
+                
 
                 ////http://stackoverflow.com/questions/29417166/out-of-memory-exception-when-working-with-large-images
                 //var fs = new FileStream(Directory.GetCurrentDirectory() + @"\Resources\" + GameObj.ImagePath, FileMode.Open, FileAccess.Read);
                 //var newImage = Image.FromStream(fs);
                 //fs.Dispose();
 
-                e.Graphics.DrawImage(newImage, new Point(GameObj.X, GameObj.Y));
+                e.Graphics.DrawImage(GameObj.img, new Point(GameObj.X, GameObj.Y));
             }
         }
     }
