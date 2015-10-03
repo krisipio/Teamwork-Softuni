@@ -18,7 +18,7 @@ namespace SpaceArcadeShooter
             this.Y += movement + Y;
         }
 
-        public void Move ()
+        public void Move()
         {
             this.X = startPosition;
             this.Y += movement;
