@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Asteroid.cs" />
     <Compile Include="Background.cs" />
     <Compile Include="BackgroundStar.cs" />
+    <Compile Include="Engine.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GraphicsHandler.cs" />
     <Compile Include="SpaceArcadeShooter.cs">

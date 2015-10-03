@@ -55,7 +55,6 @@ namespace SpaceArcadeShooter
                                    @"Space\Star11.png", @"Space\Star12.png"};
 
             BackgroundStar[] Stars = new BackgroundStar[starPaths.Length];
-            Random RNG = new Random();
 
             for (int i = 0; i < Stars.Length; i++)
             {

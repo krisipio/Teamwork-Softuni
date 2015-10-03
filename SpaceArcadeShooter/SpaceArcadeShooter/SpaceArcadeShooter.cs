@@ -17,10 +17,12 @@ namespace SpaceArcadeShooter
         private static bool left { get; set; }
         private static bool up { get; set; }
         private static bool down { get; set; }
+
+        private static int collisionRadius = 130;
         
         static Background Space = new Background(0, -6000, @"Space\Background.png");
         static BackgroundStar[] Stars = BackgroundStar.MakeStars();
-
+        static Asteroid[] Asteroids = Asteroid.MakeAsteroids();
 
 
         static Spaceship AirCraft = new Spaceship(400, 540);
@@ -79,6 +81,25 @@ namespace SpaceArcadeShooter
             foreach (var star in Stars)
             {
                 star.Move();
+            }
+
+            // Check for collisions between Asteroids
+            for (int i = 0; i < Asteroids.Length; i++)
+            {
+                for (int j = 0; j < Asteroids.Length; j++)
+                {
+                    if ((Asteroids[i] != Asteroids[j]) &&
+                        Engine.TwoObjectsCollide(Asteroids[i], Asteroids[j], collisionRadius))
+                    {
+                        Asteroids[i].HandleCollision(Asteroids[j]);
+                    }
+                }
+            }
+
+            foreach (var asteroid in Asteroids)
+            {                
+                asteroid.Move();
+                asteroid.RotateImage(); // Not working yet.
             }
 
         }
