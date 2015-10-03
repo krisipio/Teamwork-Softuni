@@ -20,9 +20,10 @@ namespace SpaceArcadeShooter
         
         static Background Space = new Background(0, -6000, @"Space\Background.png");
         static BackgroundStar[] Stars = BackgroundStar.MakeStars();
+
+
+
         static Spaceship AirCraft = new Spaceship(400, 540);
-
-
 
         public SpaceArcadeShooter()
         {
