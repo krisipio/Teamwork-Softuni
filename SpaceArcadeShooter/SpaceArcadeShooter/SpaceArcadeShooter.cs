@@ -74,7 +74,7 @@ namespace SpaceArcadeShooter
 
             Space.MoveTo(Space.X, Space.Y + 1);
             Engine.MoveBackgroundStars(Stars);
-            //Engine.HandleAsteroidCollision(Asteroids, collisionRadius);
+            Engine.HandleAsteroidCollision(Asteroids, collisionRadius);
             Engine.MoveAsteroids(Asteroids);            
 
         }
@@ -94,10 +94,12 @@ namespace SpaceArcadeShooter
             if(e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
                 up = false;
+                AirCraft.MoveStop();
             }
             if(e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
                 down = false;
+                AirCraft.MoveStop();
             }
         }
 

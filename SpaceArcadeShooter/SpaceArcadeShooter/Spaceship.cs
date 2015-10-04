@@ -29,7 +29,7 @@ namespace SpaceArcadeShooter
             ammoCount = 100;
         }
 
-        public void MoveTo(int X, int Y)
+        private void MoveTo(int X, int Y)
         {
             //if(X<-150 || X>1000) //out of borders
             //{
@@ -62,11 +62,15 @@ namespace SpaceArcadeShooter
         internal void MoveUp()
         {
             MoveTo(X, Y - 5);
+            ImagePath = @"ShipRotation\0024.png"; //change img Path to left rotation frame
+            img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001-f.png");
         }
 
         internal void MoveDown()
         {
             MoveTo(X, Y + 5);
+            ImagePath = @"ShipRotation\0024.png"; //change img Path to left rotation frame
+            img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001-b.png");
         }
 
         internal void MoveStop()

@@ -9,7 +9,7 @@ namespace SpaceArcadeShooter
     class BackgroundStar : GameObject
     {
         static Random RNG = new Random();
-        public int movement = RNG.Next(1, 9);
+        public int movement = RNG.Next(1, 13);
         public int startPosition = RNG.Next(0, 780);
 
         public BackgroundStar(int X, int Y, string imagePath) : base(X, Y, imagePath)
@@ -26,7 +26,7 @@ namespace SpaceArcadeShooter
             {
                 Y -= 1500;
                 startPosition = RNG.Next(0, 780);
-                movement = RNG.Next(1, 9);
+                movement = RNG.Next(1, 13);
             }
         }
 
@@ -39,8 +39,22 @@ namespace SpaceArcadeShooter
 
         public static BackgroundStar[] MakeStars()
         {
-            // Repeat them twice for more stars
+            // 4x for more stars
             string[] starPaths = { @"Space\Star1.png", @"Space\Star2.png",
+                                   @"Space\Star3.png", @"Space\Star4.png",
+                                   @"Space\Star5.png", @"Space\Star6.png",
+                                   @"Space\Star7.png", @"Space\Star8.png",
+                                   @"Space\Star9.png", @"Space\Star10.png",
+                                   @"Space\Star11.png", @"Space\Star12.png",
+
+                                   @"Space\Star1.png", @"Space\Star2.png",
+                                   @"Space\Star3.png", @"Space\Star4.png",
+                                   @"Space\Star5.png", @"Space\Star6.png",
+                                   @"Space\Star7.png", @"Space\Star8.png",
+                                   @"Space\Star9.png", @"Space\Star10.png",
+                                   @"Space\Star11.png", @"Space\Star12.png",
+
+                                   @"Space\Star1.png", @"Space\Star2.png",
                                    @"Space\Star3.png", @"Space\Star4.png",
                                    @"Space\Star5.png", @"Space\Star6.png",
                                    @"Space\Star7.png", @"Space\Star8.png",

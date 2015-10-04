@@ -34,7 +34,7 @@ namespace SpaceArcadeShooter
         internal static void HandleCollision(GameObject firstCollider, GameObject secondCollider)
         {
             int speedDivisor = 3; // Decrease the speed change from collision. It is too much without it.
-            int collisionCooldown = 60; // Max milliseconds before collission can occur again.
+            int collisionCooldown = 5000; // Max milliseconds before collission can occur again.
 
             if (firstCollider.collisionTimer.ElapsedMilliseconds > collisionCooldown &&
                 secondCollider.collisionTimer.ElapsedMilliseconds > collisionCooldown &&

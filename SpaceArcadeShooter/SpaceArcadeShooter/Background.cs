@@ -17,7 +17,7 @@ namespace SpaceArcadeShooter
         {            
             this.X = X;
             this.Y = Y;
-            if (Y > -670) this.Y = -6000;
+            if (Y > -650) this.Y = -6000;
         }
     }
 }
