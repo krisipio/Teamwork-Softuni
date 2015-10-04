@@ -45,10 +45,10 @@ namespace SpaceArcadeShooter
                     firstCollider.Xspeed -= secondCollider.Xspeed / speedDivisor; // firstCollider increases speed to the left.
                     secondCollider.Xspeed += firstCollider.Xspeed / speedDivisor; // secondCollider decreases speed to the left.
                 }
-                else // firstCollider is to the left of secondCollider.
+                else // firstCollider is to the right of secondCollider.
                 {
-                    firstCollider.Xspeed += secondCollider.Xspeed / speedDivisor; // firstCollider increases speed to the left.
-                    secondCollider.Xspeed -= firstCollider.Xspeed / speedDivisor; // secondCollider decreases speed to the left.
+                    firstCollider.Xspeed += secondCollider.Xspeed / speedDivisor; // firstCollider increases speed to the right.
+                    secondCollider.Xspeed -= firstCollider.Xspeed / speedDivisor; // secondCollider decreases speed to the right.
                 }
 
                 if (firstCollider.Y < secondCollider.Y)  // firstCollider is above secondCollider.
