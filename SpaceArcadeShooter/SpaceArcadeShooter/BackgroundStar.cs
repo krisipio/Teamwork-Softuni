@@ -20,11 +20,11 @@ namespace SpaceArcadeShooter
 
         public void Move()
         {
-            this.X = startPosition;
-            this.Y += movement;
+            X = startPosition;
+            Y += movement;
             if (Y > 800)
             {
-                this.Y -= 1500;
+                Y -= 1500;
                 startPosition = RNG.Next(0, 780);
                 movement = RNG.Next(1, 9);
             }

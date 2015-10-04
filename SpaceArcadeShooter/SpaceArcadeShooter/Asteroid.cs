@@ -12,10 +12,16 @@ namespace SpaceArcadeShooter
         static Random RNG = new Random();
         public int startPosition = RNG.Next(0, 700);
 
+        const int maxLeftSpeed = -2;
+        const int maxRightSpeed = 3;
+
+        const int minFallSpeed = 2;
+        const int maxFallSpeed = 6;
+
         public Asteroid(int X, int Y, string imagePath) : base(X, Y, imagePath)
         {
-            Xspeed = RNG.Next(-2, 3);
-            Yspeed = RNG.Next(2, 9);
+            Xspeed = RNG.Next(maxLeftSpeed, maxRightSpeed);
+            Yspeed = RNG.Next(minFallSpeed, maxFallSpeed);
             this.X = startPosition + X;
             this.Y += Yspeed + Y;
         }
@@ -28,8 +34,8 @@ namespace SpaceArcadeShooter
             X += Xspeed;
             if (X < -200 || X > 900)
             {                
-                Xspeed = RNG.Next(-2, 3);
-                Yspeed = RNG.Next(2, 9);
+                Xspeed = RNG.Next(maxLeftSpeed, maxRightSpeed);
+                Yspeed = RNG.Next(minFallSpeed, maxFallSpeed);
                 X = RNG.Next(0, 700);
                 Y = -200;
             }
@@ -40,8 +46,8 @@ namespace SpaceArcadeShooter
             Y += Yspeed;
             if (Y < -1100 || Y > 800)
             {
-                Xspeed = RNG.Next(-2, 3);
-                Yspeed = RNG.Next(2, 9);
+                Xspeed = RNG.Next(maxLeftSpeed, maxRightSpeed);
+                Yspeed = RNG.Next(minFallSpeed, maxFallSpeed);
                 X = RNG.Next(0, 700);
                 Y = -200;
             }

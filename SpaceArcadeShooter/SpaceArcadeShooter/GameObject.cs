@@ -24,55 +24,7 @@ namespace SpaceArcadeShooter
         public void Appear()
         {
             // Not implemented.
-        }
-
-        public void HandleCollision(GameObject collider)
-        {
-            if (collisionTimer.ElapsedMilliseconds > 1000 &&
-                !(X < 0 && X > 900) && !(Y < 0 && Y > 800))
-            {
-                if (Xspeed < collider.Xspeed)
-                {
-                    if (collider.Xspeed > 0)
-                    {
-                        Xspeed += collider.Xspeed / 2;
-                        collider.Xspeed--;
-                    }
-                    else
-                    {
-                        Xspeed -= collider.Xspeed / 2;
-                        collider.Xspeed++;
-                    }                                        
-                }
-                else
-                {
-                    if (collider.Xspeed > 0)
-                    {
-                        Xspeed += collider.Xspeed / 2;
-                        collider.Xspeed++;
-                    }
-                    else
-                    {
-                        Xspeed -= collider.Xspeed / 2;
-                        collider.Xspeed--;
-                    }
-                }
-
-                if (Yspeed < collider.Yspeed)
-                {
-                    Yspeed += collider.Yspeed / 2;
-                    collider.Yspeed++;
-                }
-                else
-                {
-                    Yspeed -= collider.Yspeed / 2;
-                    collider.Yspeed--;
-                }
-                collisionTimer.Reset();
-                collisionTimer.Start();
-            }
-            
-        }
+        }        
 
         public void Disappear()
         {
