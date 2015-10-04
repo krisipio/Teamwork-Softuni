@@ -27,12 +27,10 @@ namespace SpaceArcadeShooter
             // and random side movement.
             X += Xspeed;
             if (X < -200 || X > 900)
-            {
-                startPosition = RNG.Next(0, 700);
-                
+            {                
                 Xspeed = RNG.Next(-2, 3);
                 Yspeed = RNG.Next(2, 9);
-                X = startPosition + X;
+                X = RNG.Next(0, 700);
                 Y = -200;
             }
 
@@ -42,11 +40,9 @@ namespace SpaceArcadeShooter
             Y += Yspeed;
             if (Y < -1100 || Y > 800)
             {
-                startPosition = RNG.Next(0, 700);
-
                 Xspeed = RNG.Next(-2, 3);
                 Yspeed = RNG.Next(2, 9);
-                X = startPosition = RNG.Next(0, 700);
+                X = RNG.Next(0, 700);
                 Y = -200;
             }
         }

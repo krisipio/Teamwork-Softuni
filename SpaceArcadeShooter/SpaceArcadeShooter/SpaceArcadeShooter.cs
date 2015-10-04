@@ -77,30 +77,9 @@ namespace SpaceArcadeShooter
             }
 
             Space.MoveTo(Space.X, Space.Y + 1);
-
-            foreach (var star in Stars)
-            {
-                star.Move();
-            }
-
-            // Check for collisions between Asteroids
-            for (int i = 0; i < Asteroids.Length; i++)
-            {
-                for (int j = 0; j < Asteroids.Length; j++)
-                {
-                    if ((Asteroids[i] != Asteroids[j]) &&
-                        Engine.TwoObjectsCollide(Asteroids[i], Asteroids[j], collisionRadius))
-                    {
-                        Asteroids[i].HandleCollision(Asteroids[j]);
-                    }
-                }
-            }
-
-            foreach (var asteroid in Asteroids)
-            {                
-                asteroid.Move();
-                asteroid.RotateImage(); // Not working yet.
-            }
+            Engine.MoveBackgroundStars(Stars);
+            Engine.HandleAsteroidCollision(Asteroids, collisionRadius);
+            Engine.MoveAsteroids(Asteroids);            
 
         }
 
