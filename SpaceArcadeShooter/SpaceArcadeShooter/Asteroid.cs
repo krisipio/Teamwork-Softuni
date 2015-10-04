@@ -12,8 +12,8 @@ namespace SpaceArcadeShooter
         static Random RNG = new Random();
         public int startPosition = RNG.Next(0, 700);
 
-        const int maxLeftSpeed = -2;
-        const int maxRightSpeed = 3;
+        const int maxLeftSpeed = -3;
+        const int maxRightSpeed = 4;
 
         const int minFallSpeed = 2;
         const int maxFallSpeed = 6;
@@ -23,7 +23,7 @@ namespace SpaceArcadeShooter
             Xspeed = RNG.Next(maxLeftSpeed, maxRightSpeed);
             Yspeed = RNG.Next(minFallSpeed, maxFallSpeed);
             this.X = startPosition + X;
-            this.Y += Yspeed + Y;
+            this.Y = RNG.Next(-1600, -200);
         }
 
         public void Move()
@@ -44,7 +44,7 @@ namespace SpaceArcadeShooter
             // to a random position with random fall speed
             // and random side movement.
             Y += Yspeed;
-            if (Y < -1100 || Y > 800)
+            if (Y < -1700 || Y > 800)
             {
                 Xspeed = RNG.Next(maxLeftSpeed, maxRightSpeed);
                 Yspeed = RNG.Next(minFallSpeed, maxFallSpeed);

@@ -33,10 +33,11 @@ namespace SpaceArcadeShooter
 
         internal static void HandleCollision(GameObject firstCollider, GameObject secondCollider)
         {
-            int speedDivisor = 2; // Decrease the speed change from collision. It is too much without it;
+            int speedDivisor = 2; // Decrease the speed change from collision. It is too much without it.
+            int collisionCooldown = 100; // Max milliseconds before collission can occure again.
 
-            if (firstCollider.collisionTimer.ElapsedMilliseconds > 10 &&
-                secondCollider.collisionTimer.ElapsedMilliseconds > 10 &&
+            if (firstCollider.collisionTimer.ElapsedMilliseconds > collisionCooldown &&
+                secondCollider.collisionTimer.ElapsedMilliseconds > collisionCooldown &&
                 !(firstCollider.X < 0 && firstCollider.X > 900) &&
                 !(firstCollider.Y < 0 && firstCollider.Y > 800))
             {
@@ -54,7 +55,7 @@ namespace SpaceArcadeShooter
                 if (firstCollider.Y < secondCollider.Y)  // firstCollider is above secondCollider.
                 {
                     firstCollider.Yspeed -= secondCollider.Yspeed / speedDivisor; // firstCollider decreases.
-                    firstCollider.Yspeed = Math.Max(firstCollider.Yspeed, 1); // Making sure it doesn't go back up, or stop.
+                    firstCollider.Yspeed = Math.Max(firstCollider.Yspeed, 1); // Making sure it doesn't go back up.
 
                     secondCollider.Yspeed += firstCollider.Yspeed / speedDivisor; // secondCollider increases speed.
                 }
@@ -63,7 +64,7 @@ namespace SpaceArcadeShooter
                     firstCollider.Yspeed += secondCollider.Yspeed / speedDivisor; // secondCollider increases speed.
 
                     secondCollider.Yspeed -= firstCollider.Yspeed / speedDivisor; // firstCollider decreases speed.
-                    secondCollider.Yspeed = Math.Max(secondCollider.Yspeed, 1); // Making sure it doesn't go back up, or stop.
+                    secondCollider.Yspeed = Math.Max(secondCollider.Yspeed, 1); // Making sure it doesn't go back up.
                 }
 
                 firstCollider.collisionTimer.Reset();
@@ -73,7 +74,7 @@ namespace SpaceArcadeShooter
             }
         }
 
-        public static void HandleAsteroidCollision(Asteroid[] Asteroids, int collisionRadius)
+        internal static void HandleAsteroidCollision(Asteroid[] Asteroids, int collisionRadius)
         {
             // Check for collisions between Asteroids
             for (int i = 0; i < Asteroids.Length; i++)
@@ -88,7 +89,7 @@ namespace SpaceArcadeShooter
             }
         }
 
-        public static bool TwoObjectsCollide(GameObject firstObject, GameObject secondObject, double collisionRadius)
+        internal static bool TwoObjectsCollide(GameObject firstObject, GameObject secondObject, double collisionRadius)
         {
             if (IsPointInCircleRadius(firstObject.X, firstObject.Y, secondObject.X, secondObject.Y, collisionRadius))
                 return true;
