@@ -57,28 +57,24 @@ namespace SpaceArcadeShooter
             this.Refresh(); //trigger Paint event
             if (right)
             {
-                AirCraft.MoveTo(AirCraft.X + 5, AirCraft.Y);
-                AirCraft.ImagePath = @"ShipRotation\0134.png"; //change img Path to right rotation frame
-                AirCraft.img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0134.png");
+                AirCraft.MoveRight();                
             }
             if (left)
             {
-                AirCraft.MoveTo(AirCraft.X - 5, AirCraft.Y);
-                AirCraft.ImagePath = @"ShipRotation\0024.png"; //change img Path to left rotation frame
-                AirCraft.img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0024.png");
+                AirCraft.MofeLeft();                
             }
             if (up)
             {
-                AirCraft.MoveTo(AirCraft.X, AirCraft.Y - 5);
+                AirCraft.MoveUp();                
             }
             if (down)
             {
-                AirCraft.MoveTo(AirCraft.X, AirCraft.Y + 5);                
+                AirCraft.MoveDown();                               
             }
 
             Space.MoveTo(Space.X, Space.Y + 1);
             Engine.MoveBackgroundStars(Stars);
-            Engine.HandleAsteroidCollision(Asteroids, collisionRadius);
+            //Engine.HandleAsteroidCollision(Asteroids, collisionRadius);
             Engine.MoveAsteroids(Asteroids);            
 
         }
@@ -88,14 +84,12 @@ namespace SpaceArcadeShooter
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
                 right = false;
-                AirCraft.ImagePath = @"ShipRotation\0001.png"; //change img Path to default frame
-                AirCraft.img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001.png");
+                AirCraft.MoveStop();
             }
             if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
                 left = false;
-                AirCraft.ImagePath = @"ShipRotation\0001.png"; //change img Path to default frame
-                AirCraft.img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001.png");
+                AirCraft.MoveStop();
             }
             if(e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {

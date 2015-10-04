@@ -81,7 +81,7 @@ namespace SpaceArcadeShooter
 
             for (int i = 0; i < Asteroids.Length; i++)
             {
-                Asteroids[i] = new Asteroid(0, RNG.Next(-1000, -50), starPaths[i]);
+                Asteroids[i] = new Asteroid(0, 0, starPaths[i]);
                 Asteroids[i].collidable = true;
             }
 
