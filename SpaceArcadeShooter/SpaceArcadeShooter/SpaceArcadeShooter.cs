@@ -18,7 +18,7 @@ namespace SpaceArcadeShooter
         private static bool up { get; set; }
         private static bool down { get; set; }
 
-        private static int collisionRadius = 130;
+        private static int collisionRadius = 100;
         
         static Background Space = new Background(0, -6000, @"Space\Background.png");
         static BackgroundStar[] Stars = BackgroundStar.MakeStars();

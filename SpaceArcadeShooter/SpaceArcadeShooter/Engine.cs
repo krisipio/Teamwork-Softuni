@@ -93,10 +93,8 @@ namespace SpaceArcadeShooter
                     secondCollider.Yspeed = Math.Max(secondCollider.Yspeed, 1); // Making sure it doesn't go back up.
                 }
 
-                firstCollider.collisionTimer.Reset();
-                firstCollider.collisionTimer.Start();
-                secondCollider.collisionTimer.Reset();
-                secondCollider.collisionTimer.Start();
+                firstCollider.collisionTimer.Restart();
+                secondCollider.collisionTimer.Restart();
             }
         }
         
@@ -117,9 +115,9 @@ namespace SpaceArcadeShooter
 
         internal static bool TwoObjectsCollide(GameObject firstObject, GameObject secondObject, double collisionRadius)
         {
-            if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),   // Get the center of each image
+            if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),   // Try to get the center of each image
                                       firstObject.Y + (firstObject.img.Height / 2),  // not the upper left corner.
-                                      secondObject.X + (secondObject.img.Width / 2),
+                                      secondObject.X + (secondObject.img.Width / 2 + 10),
                                       secondObject.Y + (secondObject.img.Height / 2),
                                       collisionRadius))
             {
