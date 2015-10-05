@@ -35,6 +35,7 @@ namespace SpaceArcadeShooter
 
         private void SpaceArcadeShooter_KeyDown(object sender, KeyEventArgs e)
         {
+
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
                 right = true;                
@@ -86,25 +87,38 @@ namespace SpaceArcadeShooter
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
         {
+            
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
                 right = false;
-                AirCraft.MoveStop();
+                if (!AirCraft.hasColided)
+                {
+                    AirCraft.MoveStop();
+                }
             }
             if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
                 left = false;
-                AirCraft.MoveStop();
+                if (!AirCraft.hasColided)
+                {
+                    AirCraft.MoveStop();
+                }
             }
-            if(e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
                 up = false;
-                AirCraft.MoveStop();
+                if (!AirCraft.hasColided)
+                {
+                    AirCraft.MoveStop();
+                }
             }
-            if(e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
                 down = false;
-                AirCraft.MoveStop();
+                if (!AirCraft.hasColided)
+                {
+                    AirCraft.MoveStop();
+                }
             }
         }
 
