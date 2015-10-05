@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Threading;
 
 namespace SpaceArcadeShooter
 {
@@ -59,6 +60,15 @@ namespace SpaceArcadeShooter
             }
         }
 
+        public static void Init()
+        {
+            for (int i = 0; i < explosionImageFrames.Length; i++)
+            {
+                var str = @"\Resources\Explosion\00" + (i + 25) + ".png"; // +25 since the png name starts from 25.
+                explosionImageFrames[i] = Image.FromFile(Directory.GetCurrentDirectory() + str);
+            }
+        }
+
         public GameObject(int X, int Y, string ImagePath)
         {
             collisionTimer.Start();
@@ -66,13 +76,6 @@ namespace SpaceArcadeShooter
             this.Y = Y;
             this.ImagePath = ImagePath;
             img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\" + this.ImagePath);
-
-            for (int i = 0; i < explosionImageFrames.Length; i++)
-            {
-                ExplosionPath = @"\Resources\Explosion\00" + (i + 25) + ".png"; // +25 since the png name starts from 25.
-                explosionImageFrames[i] = Image.FromFile(Directory.GetCurrentDirectory() + ExplosionPath);
-            }
-
             AllObjects.Add(this);
         }
     }    

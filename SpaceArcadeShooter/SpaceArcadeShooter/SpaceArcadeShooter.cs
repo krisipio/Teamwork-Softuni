@@ -124,7 +124,7 @@ namespace SpaceArcadeShooter
 
         private void SpaceArcadeShooter_Load(object sender, EventArgs e)
         {
-            
+            GameObject.Init();
             //GraphicsHandler.Render();
         }
 
