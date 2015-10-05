@@ -26,6 +26,7 @@ namespace SpaceArcadeShooter
 
 
         static Spaceship AirCraft = new Spaceship(400, 540);
+        static Explosion Boom = new Explosion(50, 50, @"Explosion\0025.png");
 
         public SpaceArcadeShooter()
         {
@@ -55,6 +56,16 @@ namespace SpaceArcadeShooter
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.Refresh(); //trigger Paint event
+
+            if (up)
+            {                
+                AirCraft.MoveUp();
+            }
+            if (down)
+            {
+                
+                AirCraft.MoveDown();
+            }
             if (right)
             {
                 AirCraft.MoveRight();                
@@ -63,15 +74,8 @@ namespace SpaceArcadeShooter
             {
                 AirCraft.MofeLeft();                
             }
-            if (up)
-            {
-                AirCraft.MoveUp();                
-            }
-            if (down)
-            {
-                AirCraft.MoveDown();                               
-            }
 
+            Engine.HandleShipCollision(AirCraft, Asteroids, collisionRadius, Boom);            
             Space.MoveTo(Space.X, Space.Y + 1);
             Engine.MoveBackgroundStars(Stars);
             Engine.HandleAsteroidCollision(Asteroids, collisionRadius);

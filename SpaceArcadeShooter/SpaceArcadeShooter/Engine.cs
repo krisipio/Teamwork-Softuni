@@ -13,6 +13,32 @@ namespace SpaceArcadeShooter
         {
             // Бръм-бръм.
         }
+        internal static void HandleShipCollision(Spaceship airCraft, Asteroid[] asteroids, int collisionRadius, Explosion boom)
+        {
+            bool shipExploded = false;
+            
+                for (int i = 0; i < asteroids.Length; i++)
+                {
+                    if (TwoObjectsCollide(airCraft, asteroids[i], collisionRadius))
+                    {
+                        ExplodeAtShip(airCraft.X - 100, airCraft.Y - 90, boom, ref shipExploded);
+
+                        //airCraft.X = -100;
+                        //airCraft.Y = -100;
+                    }
+                }
+            
+        }
+
+        internal static void ExplodeAtShip(int X, int Y, Explosion Boom, ref bool shipExploded)
+        {
+            if (!shipExploded)
+            {
+                Boom.X = X;
+                Boom.Y = Y;
+                shipExploded = Boom.Animate();
+            }            
+        }
 
         internal static void MoveBackgroundStars(BackgroundStar[] Stars)
         {
@@ -34,7 +60,7 @@ namespace SpaceArcadeShooter
         internal static void HandleCollision(GameObject firstCollider, GameObject secondCollider)
         {
             int speedDivisor = 3; // Decrease the speed change from collision. It is too much without it.
-            int collisionCooldown = 5000; // Max milliseconds before collission can occur again.
+            int collisionCooldown = 3000; // Max milliseconds before collission can occur again.
 
             if (firstCollider.collisionTimer.ElapsedMilliseconds > collisionCooldown &&
                 secondCollider.collisionTimer.ElapsedMilliseconds > collisionCooldown &&
@@ -73,7 +99,7 @@ namespace SpaceArcadeShooter
                 secondCollider.collisionTimer.Start();
             }
         }
-
+        
         internal static void HandleAsteroidCollision(Asteroid[] Asteroids, int collisionRadius)
         {
             // Check for collisions between Asteroids
@@ -91,10 +117,18 @@ namespace SpaceArcadeShooter
 
         internal static bool TwoObjectsCollide(GameObject firstObject, GameObject secondObject, double collisionRadius)
         {
-            if (IsPointInCircleRadius(firstObject.X, firstObject.Y, secondObject.X, secondObject.Y, collisionRadius))
+            if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),   // Get the center of each image
+                                      firstObject.Y + (firstObject.img.Height / 2),  // not the upper left corner.
+                                      secondObject.X + (secondObject.img.Width / 2),
+                                      secondObject.Y + (secondObject.img.Height / 2),
+                                      collisionRadius))
+            {
                 return true;
+            }
             else
+            {
                 return false;
+            }
         }
 
         private static bool IsPointInCircleRadius (double pointX, double pointY, double circleX, double circleY, double circleR)

@@ -20,6 +20,7 @@ namespace SpaceArcadeShooter
 
         public Asteroid(int X, int Y, string imagePath) : base(X, Y, imagePath)
         {
+            collisionTimer.Start();
             Xspeed = RNG.Next(maxLeftSpeed, maxRightSpeed);
             Yspeed = RNG.Next(minFallSpeed, maxFallSpeed);
             this.X = startPosition + X;

@@ -25,6 +25,7 @@ namespace SpaceArcadeShooter
 
         public Spaceship(int X,int Y) : base(X,Y, @"ShipRotation\0001.png")
         {
+            collisionTimer.Start();
             health = 100;
             ammoCount = 100;
         }
@@ -48,35 +49,35 @@ namespace SpaceArcadeShooter
         internal void MoveRight()
         {
             MoveTo(X + 5, Y);
-            ImagePath = @"ShipRotation\0134.png"; //change img Path to right rotation frame
-            img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0134.png");
+            ImagePath = @"\Resources\ShipRotation\0134.png"; //change img Path to right rotation frame
+            img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);
         }
 
         internal void MofeLeft()
         {
             MoveTo(X - 5, Y);
-            ImagePath = @"ShipRotation\0024.png"; //change img Path to left rotation frame
-            img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0024.png");
+            ImagePath = @"\Resources\ShipRotation\0024.png"; //change img Path to left rotation frame
+            img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);
         }
 
         internal void MoveUp()
         {
             MoveTo(X, Y - 5);
-            ImagePath = @"ShipRotation\0024.png"; //change img Path to left rotation frame
-            img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001-f.png");
+            ImagePath = @"\Resources\ShipRotation\0001-f.png"; //change img Path to left rotation frame
+            img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);
         }
 
         internal void MoveDown()
         {
             MoveTo(X, Y + 5);
-            ImagePath = @"ShipRotation\0024.png"; //change img Path to left rotation frame
-            img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001-b.png");
+            ImagePath = @"\Resources\ShipRotation\0001-b.png"; //change img Path to left rotation frame
+            img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);
         }
 
         internal void MoveStop()
         {
-            ImagePath = @"ShipRotation\0001.png"; //change img Path to default frame
-            img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\ShipRotation\0001.png");
+            ImagePath = @"\Resources\ShipRotation\0001.png"; //change img Path to default frame
+            img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);
         }
     }
 }

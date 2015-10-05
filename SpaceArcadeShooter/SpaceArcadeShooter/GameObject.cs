@@ -33,7 +33,6 @@ namespace SpaceArcadeShooter
 
         public GameObject(int X, int Y, string ImagePath)
         {
-            collisionTimer.Start();
             this.X = X;
             this.Y = Y;
             this.ImagePath = ImagePath;
