@@ -13,6 +13,14 @@ namespace SpaceArcadeShooter
         public int health { get; set; }
         public int ammoCount { get; set; }
 
+        public Spaceship(int X, int Y) : base(X, Y, @"ShipRotation\0001.png")
+        {
+            collisionTimer.Start();
+            hasColided = false;
+            health = 100;
+            ammoCount = 100;
+        }
+        
         public void Explore()
         {
             // Not implemented.
@@ -21,14 +29,7 @@ namespace SpaceArcadeShooter
         public void Attack()
         {
             // Not implemented.
-        }
-
-        public Spaceship(int X,int Y) : base(X,Y, @"ShipRotation\0001.png")
-        {
-            collisionTimer.Start();
-            health = 100;
-            ammoCount = 100;
-        }
+        }        
 
         private void MoveTo(int X, int Y)
         {
@@ -48,9 +49,12 @@ namespace SpaceArcadeShooter
 
         internal void MoveRight()
         {
-            MoveTo(X + 5, Y);
-            ImagePath = @"\Resources\ShipRotation\0134.png"; //change img Path to right rotation frame
-            img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);
+            if (!hasColided)
+            {
+                MoveTo(X + 5, Y);
+                ImagePath = @"\Resources\ShipRotation\0134.png"; //change img Path to right rotation frame
+                img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);
+            }            
         }
 
         internal void MofeLeft()

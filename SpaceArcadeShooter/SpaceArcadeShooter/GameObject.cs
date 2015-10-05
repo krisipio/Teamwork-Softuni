@@ -17,10 +17,12 @@ namespace SpaceArcadeShooter
         public int Y { get; set; }
         public int Xspeed { get; set; }
         public int Yspeed { get; set; }
-        public bool collidable = false;
+        public bool collidable { get; set; }
+        public bool hasColided { get; set; }
         public Stopwatch collisionTimer = new Stopwatch();
         
         public string ImagePath { get; set; }
+
         public void Appear()
         {
             // Not implemented.
@@ -29,10 +31,36 @@ namespace SpaceArcadeShooter
         public void Disappear()
         {
             AllObjects.Remove(this);
-        }        
+        }
+        
+        private static int explosionStage = 25;
+        private string ExplosionPath = @"\Resources\Explosion\00" + explosionStage + ".png";
+        private bool offsetExplosion = true;
+
+        public void Explode()
+        {
+            if (offsetExplosion)
+            {
+                X = X - 100;
+                Y = Y - 100;
+                offsetExplosion = false;
+            }
+
+            if (explosionStage <= 52)
+            {
+                ExplosionPath = @"\Resources\Explosion\00" + explosionStage + ".png";
+                img = Image.FromFile(Directory.GetCurrentDirectory() + ExplosionPath);
+                explosionStage++;
+            }
+            else
+            {
+                Disappear();
+            }
+        }
 
         public GameObject(int X, int Y, string ImagePath)
         {
+            collisionTimer.Start();
             this.X = X;
             this.Y = Y;
             this.ImagePath = ImagePath;

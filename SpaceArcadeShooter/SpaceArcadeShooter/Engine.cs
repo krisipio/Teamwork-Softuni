@@ -13,31 +13,23 @@ namespace SpaceArcadeShooter
         {
             // Бръм-бръм.
         }
-        internal static void HandleShipCollision(Spaceship airCraft, Asteroid[] asteroids, int collisionRadius, Explosion boom)
+
+        internal static void HandleShipCollision(Spaceship airCraft, Asteroid[] asteroids, int collisionRadius)
         {
-            bool shipExploded = false;
-            
+            if (!airCraft.hasColided)
+            {
                 for (int i = 0; i < asteroids.Length; i++)
                 {
                     if (TwoObjectsCollide(airCraft, asteroids[i], collisionRadius))
                     {
-                        ExplodeAtShip(airCraft.X - 100, airCraft.Y - 90, boom, ref shipExploded);
-
-                        //airCraft.X = -100;
-                        //airCraft.Y = -100;
+                        airCraft.hasColided = true;
                     }
                 }
-            
-        }
-
-        internal static void ExplodeAtShip(int X, int Y, Explosion Boom, ref bool shipExploded)
-        {
-            if (!shipExploded)
+            }
+            else
             {
-                Boom.X = X;
-                Boom.Y = Y;
-                shipExploded = Boom.Animate();
-            }            
+                airCraft.Explode();
+            }                       
         }
 
         internal static void MoveBackgroundStars(BackgroundStar[] Stars)
@@ -115,10 +107,10 @@ namespace SpaceArcadeShooter
 
         internal static bool TwoObjectsCollide(GameObject firstObject, GameObject secondObject, double collisionRadius)
         {
-            if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),   // Try to get the center of each image
-                                      firstObject.Y + (firstObject.img.Height / 2),  // not the upper left corner.
-                                      secondObject.X + (secondObject.img.Width / 2 + 10),
-                                      secondObject.Y + (secondObject.img.Height / 2),
+            if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),          // Try to get the center of each image
+                                      firstObject.Y + (firstObject.img.Height / 2),         // not the upper left corner
+                                      secondObject.X + (secondObject.img.Width / 2 + 10),   // +10 for the ship
+                                      secondObject.Y + (secondObject.img.Height / 2),       // Maybe add another method for the rest
                                       collisionRadius))
             {
                 return true;
