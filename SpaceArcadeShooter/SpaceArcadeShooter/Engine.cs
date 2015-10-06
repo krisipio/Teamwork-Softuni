@@ -9,13 +9,13 @@ namespace SpaceArcadeShooter
 {
     class Engine
     {
-        internal static void HandleShipCollision(Spaceship airCraft, Asteroid[] asteroids, int collisionRadius)
+        internal static void HandleShipCollision(Spaceship airCraft, Asteroid[] asteroids)
         {
             if (!airCraft.hasColided)
             {
                 for (int i = 0; i < asteroids.Length; i++)
                 {
-                    if (TwoObjectsCollide(airCraft, asteroids[i], collisionRadius))
+                    if (TwoObjectsCollide(airCraft, asteroids[i]))
                     {
                         airCraft.hasColided = true;
                     }
@@ -93,14 +93,14 @@ namespace SpaceArcadeShooter
             }
         }
         
-        internal static void CkeckAsteroidCollision(Asteroid[] Asteroids, int collisionRadius)
+        internal static void CkeckAsteroidCollision(Asteroid[] Asteroids)
         {
             // Check for collisions between Asteroids
             for (int i = 0; i < Asteroids.Length; i++)
             {
                 for (int j = 0; j < Asteroids.Length; j++)
                 {
-                    if ((i != j) && Engine.TwoObjectsCollide(Asteroids[i], Asteroids[j], collisionRadius))
+                    if ((i != j) && Engine.TwoObjectsCollide(Asteroids[i], Asteroids[j]))
                     {
                         Engine.HandleAsteroidCollision(Asteroids[i], Asteroids[j]);
                     }
@@ -108,13 +108,13 @@ namespace SpaceArcadeShooter
             }
         }
 
-        internal static bool TwoObjectsCollide(GameObject firstObject, GameObject secondObject, double collisionRadius)
+        internal static bool TwoObjectsCollide(GameObject firstObject, GameObject secondObject)
         {
             if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),          // Try to get the center of each image
                                       firstObject.Y + (firstObject.img.Height / 2),         // not the upper left corner
-                                      secondObject.X + (secondObject.img.Width / 2 + 20),   // +20 for better ship collision
+                                      secondObject.X + (secondObject.img.Width / 2),
                                       secondObject.Y + (secondObject.img.Height / 2),
-                                      collisionRadius))
+                                      secondObject.collisionRadius))
             {
                 return true;
             }

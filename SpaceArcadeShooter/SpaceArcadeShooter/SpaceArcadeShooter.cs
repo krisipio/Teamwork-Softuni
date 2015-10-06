@@ -18,9 +18,7 @@ namespace SpaceArcadeShooter
         private static bool up { get; set; }
         private static bool down { get; set; }
         private static bool shoot { get; set; }
-
-        private static int collisionRadius = 100;
-        
+                
         static Background Space = new Background(0, -6000, @"Space\Background.png");
         static BackgroundStar[] Stars = BackgroundStar.MakeStars();
         static Asteroid[] Asteroids = Asteroid.MakeAsteroids();
@@ -90,9 +88,9 @@ namespace SpaceArcadeShooter
             Space.MoveTo(Space.X, Space.Y + 1);
             Engine.MoveBackgroundStars(Stars);
             Engine.MoveProjectiles(Projectiles);
-            Engine.CkeckAsteroidCollision(Asteroids, collisionRadius);
+            Engine.CkeckAsteroidCollision(Asteroids);
             Engine.MoveAsteroids(Asteroids);
-            Engine.HandleShipCollision(AirCraft, Asteroids, collisionRadius);
+            Engine.HandleShipCollision(AirCraft, Asteroids);
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)

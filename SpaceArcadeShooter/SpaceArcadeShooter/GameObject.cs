@@ -20,8 +20,9 @@ namespace SpaceArcadeShooter
         public int Yspeed { get; set; }
         public bool collidable { get; set; }
         public bool hasColided { get; set; }
+        public int collisionRadius { get; set; }
         public Stopwatch collisionTimer = new Stopwatch();
-        
+
         public string ImagePath { get; set; }
 
         public void Appear()
@@ -71,11 +72,12 @@ namespace SpaceArcadeShooter
 
         public GameObject(int X, int Y, string ImagePath)
         {
-            collisionTimer.Start();
+            collisionTimer.Start();            
             this.X = X;
             this.Y = Y;
             this.ImagePath = ImagePath;
             img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\" + this.ImagePath);
+            collisionRadius = Math.Min(img.Width, img.Height) - 10;
             AllObjects.Add(this);
         }
     }    

@@ -69,13 +69,17 @@ namespace SpaceArcadeShooter
         public static Asteroid[] MakeAsteroids()
         {
             // Repeat them twice for more asteroids
-            string[] starPaths = { @"Asteroids\Asteroid0.png", @"Asteroids\Asteroid1.png",
-                                   @"Asteroids\Asteroid2.png", @"Asteroids\Asteroid3.png",
-                                   @"Asteroids\Asteroid4.png", @"Asteroids\Asteroid5.png",
+            string[] starPaths = { @"Asteroids\medium_Asteroid0.png", @"Asteroids\medium_Asteroid1.png",
+                                   @"Asteroids\medium_Asteroid2.png", @"Asteroids\medium_Asteroid3.png",
+                                   @"Asteroids\medium_Asteroid4.png", @"Asteroids\medium_Asteroid5.png",
 
-                                   @"Asteroids\Asteroid0.png", @"Asteroids\Asteroid1.png",
-                                   @"Asteroids\Asteroid2.png", @"Asteroids\Asteroid3.png",
-                                   @"Asteroids\Asteroid4.png", @"Asteroids\Asteroid5.png",
+                                   @"Asteroids\small_Asteroid0.png", @"Asteroids\small_Asteroid1.png",
+                                   @"Asteroids\small_Asteroid2.png", @"Asteroids\small_Asteroid3.png",
+                                   @"Asteroids\small_Asteroid4.png", @"Asteroids\small_Asteroid5.png",
+
+                                   @"Asteroids\big_Asteroid0.png", @"Asteroids\big_Asteroid1.png",
+                                   @"Asteroids\big_Asteroid2.png", @"Asteroids\big_Asteroid3.png",
+                                   @"Asteroids\big_Asteroid4.png", @"Asteroids\big_Asteroid5.png",
             };
 
             Asteroid[] Asteroids = new Asteroid[starPaths.Length];
