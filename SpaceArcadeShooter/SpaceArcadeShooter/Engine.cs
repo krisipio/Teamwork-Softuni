@@ -7,12 +7,8 @@ using System.Drawing;
 
 namespace SpaceArcadeShooter
 {
-    class Engine
+    static class Engine
     {
-        private Engine()
-        {
-            // Бръм-бръм.
-        }
 
         internal static void HandleShipCollision(Spaceship airCraft, Asteroid[] asteroids, int collisionRadius)
         {
