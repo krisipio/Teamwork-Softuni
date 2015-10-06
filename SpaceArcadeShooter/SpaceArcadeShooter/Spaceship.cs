@@ -16,7 +16,7 @@ namespace SpaceArcadeShooter
         public Spaceship(int X, int Y) : base(X, Y, @"ShipRotation\0001.png")
         {
             collisionTimer.Start();
-            hasColided = false;
+            hasExploded = false;
             health = 100;
             ammoCount = 100;
         }

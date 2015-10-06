@@ -18,11 +18,13 @@ namespace SpaceArcadeShooter
         private static bool up { get; set; }
         private static bool down { get; set; }
         private static bool shoot { get; set; }
+
+        private static int minAsteroidNumber = 20;
                 
-        static Background Space = new Background(0, -6000, @"Space\Background.png");
-        static BackgroundStar[] Stars = BackgroundStar.MakeStars();
-        static Asteroid[] Asteroids = Asteroid.MakeAsteroids();
-        static List<Projectile> Projectiles = new List<Projectile>();
+        public static Background SpaceBackground = new Background(0, -6000, @"Space\Background.png");
+        public static BackgroundStar[] StarObjects = BackgroundStar.MakeStars();
+        public static List<Asteroid> AsteroidObjects = Asteroid.MakeAllAsteroids().ToList();
+        public static List<Projectile> ProjectileObjects = new List<Projectile>();
 
         static Spaceship AirCraft = new Spaceship(400, 540);
         //static Explosion Boom = new Explosion(50, 50, @"Explosion\0025.png");
@@ -61,7 +63,7 @@ namespace SpaceArcadeShooter
         {
             this.Refresh(); //trigger Paint event
 
-            if (!AirCraft.hasColided)
+            if (!AirCraft.hasExploded)
             {
                 if (up)
                 {
@@ -81,16 +83,19 @@ namespace SpaceArcadeShooter
                 }
                 if (shoot)
                 {
-                    AirCraft.Shoot(Projectiles, AirCraft.X, AirCraft.Y);
+                    AirCraft.Shoot(ProjectileObjects, AirCraft.X, AirCraft.Y);
                 }
             }         
                   
-            Space.MoveTo(Space.X, Space.Y + 1);
-            Engine.MoveBackgroundStars(Stars);
-            Engine.MoveProjectiles(Projectiles);
-            Engine.CkeckAsteroidCollision(Asteroids);
-            Engine.MoveAsteroids(Asteroids);
-            Engine.HandleShipCollision(AirCraft, Asteroids);
+            SpaceBackground.MoveTo(SpaceBackground.X, SpaceBackground.Y + 1);
+            Engine.MoveBackgroundStars(StarObjects);
+            Engine.MoveProjectiles(ProjectileObjects);
+            Engine.CkeckAsteroidCollision(AsteroidObjects);
+            Engine.MoveAsteroids(AsteroidObjects);
+            Engine.HandleProjectileDestruction(ProjectileObjects, AsteroidObjects);
+            Engine.ExplodeAsteroidIfDamaged(AsteroidObjects);
+            Engine.CreateAsteroid(AsteroidObjects, minAsteroidNumber);
+            Engine.HandleShipCollision(AirCraft, AsteroidObjects);
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
@@ -99,7 +104,7 @@ namespace SpaceArcadeShooter
             if (e.KeyCode == Keys.Right || e.KeyCode == Keys.D)
             {
                 right = false;
-                if (!AirCraft.hasColided)
+                if (!AirCraft.hasExploded)
                 {
                     AirCraft.MoveStop();
                 }
@@ -107,7 +112,7 @@ namespace SpaceArcadeShooter
             if (e.KeyCode == Keys.Left || e.KeyCode == Keys.A)
             {
                 left = false;
-                if (!AirCraft.hasColided)
+                if (!AirCraft.hasExploded)
                 {
                     AirCraft.MoveStop();
                 }
@@ -115,7 +120,7 @@ namespace SpaceArcadeShooter
             if (e.KeyCode == Keys.Up || e.KeyCode == Keys.W)
             {
                 up = false;
-                if (!AirCraft.hasColided)
+                if (!AirCraft.hasExploded)
                 {
                     AirCraft.MoveStop();
                 }
@@ -123,7 +128,7 @@ namespace SpaceArcadeShooter
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.S)
             {
                 down = false;
-                if (!AirCraft.hasColided)
+                if (!AirCraft.hasExploded)
                 {
                     AirCraft.MoveStop();
                 }

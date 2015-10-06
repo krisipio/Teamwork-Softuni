@@ -8,16 +8,17 @@ namespace SpaceArcadeShooter
 {
     class Projectile : GameObject
     {
-        public int movementSpeed = 20;
+        public int damage = 10;
 
-        public Projectile(int X, int Y) : base(X, Y, @"Ammo\Lazer1.png")
+        public Projectile(int X, int Y) : base(X, Y, @"Ammo\Lazer2.png")
         {
-            hasColided = false;
+            Yspeed = -20;
+            hasExploded = false;
         }
 
         public void MoveUp()
         {
-            Y -= movementSpeed;
+            Y += Yspeed;
 
             if (Y < -400)
             {

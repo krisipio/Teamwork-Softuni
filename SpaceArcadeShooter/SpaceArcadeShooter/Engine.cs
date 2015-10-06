@@ -9,15 +9,57 @@ namespace SpaceArcadeShooter
 {
     class Engine
     {
-        internal static void HandleShipCollision(Spaceship airCraft, Asteroid[] asteroids)
+        internal static void CreateAsteroid(List<Asteroid> Asteroids, int minAsteroidNumber)
         {
-            if (!airCraft.hasColided)
+            if (Asteroids.Count < minAsteroidNumber)
             {
-                for (int i = 0; i < asteroids.Length; i++)
+                Asteroids.Add(Asteroid.MakeRandomAsteroid());
+            }
+        }
+
+        internal static void ExplodeAsteroidIfDamaged(List<Asteroid> Asteroids)
+        {
+            foreach (var asteroid in Asteroids)
+            {
+                if (asteroid.health <= 0)
                 {
-                    if (TwoObjectsCollide(airCraft, asteroids[i]))
+                    asteroid.hasExploded = true;
+                    asteroid.Explode();                    
+                }
+            }
+        }
+
+        internal static void HandleProjectileDestruction(List<Projectile> Projectiles, List<Asteroid> Asteroids)
+        {
+            foreach (var projectile in Projectiles)
+            {
+                if (!projectile.hasExploded)
+                {
+                    foreach (var asteroid in Asteroids)
                     {
-                        airCraft.hasColided = true;
+                        if (TwoObjectsCollide(projectile, asteroid))
+                        {
+                            projectile.hasExploded = true;
+                            asteroid.health -= projectile.damage;
+                        }
+                    }
+                }
+                else
+                {
+                    projectile.Disappear();
+                }
+            }
+        }
+
+        internal static void HandleShipCollision(Spaceship airCraft, List<Asteroid> Asteroids)
+        {
+            if (!airCraft.hasExploded)
+            {
+                for (int i = 0; i < Asteroids.Count; i++)
+                {
+                    if (TwoObjectsCollide(airCraft, Asteroids[i]))
+                    {
+                        airCraft.hasExploded = true;
                     }
                 }
             }
@@ -43,7 +85,7 @@ namespace SpaceArcadeShooter
             }
         }
 
-        internal static void MoveAsteroids(Asteroid[] Asteroids)
+        internal static void MoveAsteroids(List<Asteroid> Asteroids)
         {
             foreach (var asteroid in Asteroids)
             {
@@ -93,12 +135,12 @@ namespace SpaceArcadeShooter
             }
         }
         
-        internal static void CkeckAsteroidCollision(Asteroid[] Asteroids)
+        internal static void CkeckAsteroidCollision(List<Asteroid> Asteroids)
         {
             // Check for collisions between Asteroids
-            for (int i = 0; i < Asteroids.Length; i++)
+            for (int i = 0; i < Asteroids.Count; i++)
             {
-                for (int j = 0; j < Asteroids.Length; j++)
+                for (int j = 0; j < Asteroids.Count; j++)
                 {
                     if ((i != j) && Engine.TwoObjectsCollide(Asteroids[i], Asteroids[j]))
                     {
