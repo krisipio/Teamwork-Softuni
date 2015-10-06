@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace SpaceArcadeShooter
 {
-    class GameObject 
+    public class GameObject 
     {
         public static List<GameObject> AllObjects=new List<GameObject>();
         public Image img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\Ammo\AmmoCrate.png"); //placeholder

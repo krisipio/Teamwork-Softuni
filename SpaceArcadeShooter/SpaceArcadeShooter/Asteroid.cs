@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace SpaceArcadeShooter
 {
-    class Asteroid : GameObject
+    public class Asteroid : GameObject
     {
         static Random RNG = new Random();
         public int health { get; set; }

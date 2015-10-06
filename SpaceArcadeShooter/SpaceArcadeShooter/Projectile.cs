@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceArcadeShooter
 {
-    class Projectile : GameObject
+    public class Projectile : GameObject
     {
         public int damage = 10;
 

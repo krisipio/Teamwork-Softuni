@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceArcadeShooter
 {
-    class BackgroundStar : GameObject
+    public class BackgroundStar : GameObject
     {
         static Random RNG = new Random();
         public int movement = RNG.Next(1, 13);

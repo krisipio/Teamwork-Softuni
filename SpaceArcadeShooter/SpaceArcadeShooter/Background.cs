@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpaceArcadeShooter
 {
-    class Background : GameObject
+    public class Background : GameObject
     {
         public Background(int X, int Y, string imagePath) : base(X, Y, imagePath)
         {
