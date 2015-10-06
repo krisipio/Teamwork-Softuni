@@ -33,7 +33,6 @@ namespace SpaceArcadeShooter
         public void Disappear()
         {
             AllObjects.Remove(this);
-            
         }
 
         private int explosionCounter = 0;

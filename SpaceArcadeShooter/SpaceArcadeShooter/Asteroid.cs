@@ -73,40 +73,28 @@ namespace SpaceArcadeShooter
             img = Engine.RotateImage(img, 1);
         }
 
+        public static string[] asteroidPaths = 
+        {
+            @"Asteroids\medium_Asteroid0.png", @"Asteroids\medium_Asteroid1.png",
+            @"Asteroids\medium_Asteroid2.png", @"Asteroids\medium_Asteroid3.png",
+            @"Asteroids\medium_Asteroid4.png", @"Asteroids\medium_Asteroid5.png",
+
+            @"Asteroids\small_Asteroid0.png", @"Asteroids\small_Asteroid1.png",
+            @"Asteroids\small_Asteroid2.png", @"Asteroids\small_Asteroid3.png",
+            @"Asteroids\small_Asteroid4.png", @"Asteroids\small_Asteroid5.png",
+
+            @"Asteroids\big_Asteroid0.png", @"Asteroids\big_Asteroid1.png",
+            @"Asteroids\big_Asteroid2.png", @"Asteroids\big_Asteroid3.png",
+            @"Asteroids\big_Asteroid4.png", @"Asteroids\big_Asteroid5.png",
+        };
+
         public static Asteroid MakeRandomAsteroid()
         {
-            string[] asteroidPaths = { @"Asteroids\medium_Asteroid0.png", @"Asteroids\medium_Asteroid1.png",
-                                       @"Asteroids\medium_Asteroid2.png", @"Asteroids\medium_Asteroid3.png",
-                                       @"Asteroids\medium_Asteroid4.png", @"Asteroids\medium_Asteroid5.png",
-
-                                       @"Asteroids\small_Asteroid0.png", @"Asteroids\small_Asteroid1.png",
-                                       @"Asteroids\small_Asteroid2.png", @"Asteroids\small_Asteroid3.png",
-                                       @"Asteroids\small_Asteroid4.png", @"Asteroids\small_Asteroid5.png",
-
-                                       @"Asteroids\big_Asteroid0.png", @"Asteroids\big_Asteroid1.png",
-                                       @"Asteroids\big_Asteroid2.png", @"Asteroids\big_Asteroid3.png",
-                                       @"Asteroids\big_Asteroid4.png", @"Asteroids\big_Asteroid5.png",
-            };
-
             return new Asteroid(0, 0, asteroidPaths[RNG.Next(0, asteroidPaths.Length)]);
         }
 
         public static Asteroid[] MakeAllAsteroids()
         {
-            // Repeat them twice for more asteroids
-            string[] asteroidPaths = { @"Asteroids\medium_Asteroid0.png", @"Asteroids\medium_Asteroid1.png",
-                                       @"Asteroids\medium_Asteroid2.png", @"Asteroids\medium_Asteroid3.png",
-                                       @"Asteroids\medium_Asteroid4.png", @"Asteroids\medium_Asteroid5.png",
-
-                                       @"Asteroids\small_Asteroid0.png", @"Asteroids\small_Asteroid1.png",
-                                       @"Asteroids\small_Asteroid2.png", @"Asteroids\small_Asteroid3.png",
-                                       @"Asteroids\small_Asteroid4.png", @"Asteroids\small_Asteroid5.png",
-
-                                       @"Asteroids\big_Asteroid0.png", @"Asteroids\big_Asteroid1.png",
-                                       @"Asteroids\big_Asteroid2.png", @"Asteroids\big_Asteroid3.png",
-                                       @"Asteroids\big_Asteroid4.png", @"Asteroids\big_Asteroid5.png",
-            };
-
             Asteroid[] Asteroids = new Asteroid[asteroidPaths.Length];
 
             for (int i = 0; i < Asteroids.Length; i++)
