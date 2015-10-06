@@ -47,7 +47,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "SpaceArcadeShooter";
-            this.Text = "Form1";
+            this.Text = "Space Arcade Shooter";
             this.Load += new System.EventHandler(this.SpaceArcadeShooter_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.SpaceArcadeShooter_Paint);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpaceArcadeShooter_KeyDown);

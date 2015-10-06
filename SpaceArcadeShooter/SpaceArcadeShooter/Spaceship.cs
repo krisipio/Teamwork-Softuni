@@ -8,8 +8,11 @@ using System.Drawing;
 
 namespace SpaceArcadeShooter
 {
-    class Spaceship : GameObject
+    public class Spaceship : GameObject
     {
+        private bool offsetExplosion = true; // Offset the explosion and set it to false so it happens only once.
+        private int explosionCounter = 0;
+        private int explosionLastFrame = 26; // How many frames the explosion has.
         public int health { get; set; }
         public int ammoCount { get; set; }
 
@@ -44,6 +47,27 @@ namespace SpaceArcadeShooter
             {
                 this.X = X;
                 this.Y = Y;
+            }
+        }
+
+        public void Explode()
+        {
+            if (offsetExplosion) // If true offset and set it to false.
+            {
+                X = X - 100;
+                Y = Y - 100;
+                offsetExplosion = false;
+            }
+
+            if (explosionCounter <= explosionLastFrame)
+            {
+                img = explosionImageFrames[explosionCounter];
+                explosionCounter++;
+            }
+            else
+            {
+                Disappear();
+                Y = 790;
             }
         }
 

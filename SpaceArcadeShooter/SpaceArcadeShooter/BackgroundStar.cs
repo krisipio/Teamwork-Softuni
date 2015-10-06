@@ -11,6 +11,7 @@ namespace SpaceArcadeShooter
         static Random RNG = new Random();
         public int movement = RNG.Next(1, 13);
         public int startPosition = RNG.Next(0, 780);
+        public static BackgroundStar[] StarObjects = BackgroundStar.MakeStars();
 
         public BackgroundStar(int X, int Y, string imagePath) : base(X, Y, imagePath)
         {

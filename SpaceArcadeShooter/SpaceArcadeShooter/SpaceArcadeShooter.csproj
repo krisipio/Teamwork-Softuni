@@ -52,7 +52,6 @@
     <Compile Include="BackgroundStar.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="GraphicsHandler.cs" />
     <Compile Include="Projectile.cs" />
     <Compile Include="SpaceArcadeShooter.cs">
       <SubType>Form</SubType>

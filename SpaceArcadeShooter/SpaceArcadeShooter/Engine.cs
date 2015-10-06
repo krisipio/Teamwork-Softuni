@@ -19,7 +19,7 @@ namespace SpaceArcadeShooter
 
         internal static void ExplodeAsteroidIfDamaged(List<Asteroid> Asteroids)
         {
-            foreach (var asteroid in Asteroids)
+            foreach (var asteroid in Asteroids.ToList())
             {
                 if (asteroid.health <= 0)
                 {
@@ -31,11 +31,11 @@ namespace SpaceArcadeShooter
 
         internal static void HandleProjectileDestruction(List<Projectile> Projectiles, List<Asteroid> Asteroids)
         {
-            foreach (var projectile in Projectiles)
+            foreach (var projectile in Projectiles.ToList())
             {
                 if (!projectile.hasExploded)
                 {
-                    foreach (var asteroid in Asteroids)
+                    foreach (var asteroid in Asteroids.ToList())
                     {
                         if (TwoObjectsCollide(projectile, asteroid))
                         {
@@ -71,7 +71,7 @@ namespace SpaceArcadeShooter
 
         internal static void MoveProjectiles(List<Projectile> Projectiles)
         {
-            foreach (var projectile in Projectiles)
+            foreach (var projectile in Projectiles.ToList())
             {
                 projectile.MoveUp();
             }
@@ -79,7 +79,7 @@ namespace SpaceArcadeShooter
 
         internal static void MoveBackgroundStars(BackgroundStar[] Stars)
         {
-            foreach (var star in Stars)
+            foreach (var star in Stars.ToList())
             {
                 star.Move();
             }
@@ -87,7 +87,7 @@ namespace SpaceArcadeShooter
 
         internal static void MoveAsteroids(List<Asteroid> Asteroids)
         {
-            foreach (var asteroid in Asteroids)
+            foreach (var asteroid in Asteroids.ToList())
             {
                 asteroid.Move();
                 //asteroid.RotateImage(); // Not implemented yet.

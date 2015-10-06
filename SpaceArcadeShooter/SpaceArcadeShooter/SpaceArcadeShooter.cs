@@ -22,9 +22,8 @@ namespace SpaceArcadeShooter
         private static int minAsteroidNumber = 20;
                 
         public static Background SpaceBackground = new Background(0, -6000, @"Space\Background.png");
-        public static BackgroundStar[] StarObjects = BackgroundStar.MakeStars();
-        public static List<Asteroid> AsteroidObjects = Asteroid.MakeAllAsteroids().ToList();
-        public static List<Projectile> ProjectileObjects = new List<Projectile>();
+        
+        
 
         static Spaceship AirCraft = new Spaceship(400, 540);
         //static Explosion Boom = new Explosion(50, 50, @"Explosion\0025.png");
@@ -61,7 +60,7 @@ namespace SpaceArcadeShooter
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            this.Refresh(); //trigger Paint event
+            this.Invalidate(); //trigger Paint event
 
             if (!AirCraft.hasExploded)
             {
@@ -83,19 +82,19 @@ namespace SpaceArcadeShooter
                 }
                 if (shoot)
                 {
-                    AirCraft.Shoot(ProjectileObjects, AirCraft.X, AirCraft.Y);
+                    AirCraft.Shoot(Projectile.ProjectileObjects, AirCraft.X, AirCraft.Y);
                 }
             }         
                   
             SpaceBackground.MoveTo(SpaceBackground.X, SpaceBackground.Y + 1);
-            Engine.MoveBackgroundStars(StarObjects);
-            Engine.MoveProjectiles(ProjectileObjects);
-            Engine.CkeckAsteroidCollision(AsteroidObjects);
-            Engine.MoveAsteroids(AsteroidObjects);
-            Engine.HandleProjectileDestruction(ProjectileObjects, AsteroidObjects);
-            Engine.ExplodeAsteroidIfDamaged(AsteroidObjects);
-            Engine.CreateAsteroid(AsteroidObjects, minAsteroidNumber);
-            Engine.HandleShipCollision(AirCraft, AsteroidObjects);
+            Engine.MoveBackgroundStars(BackgroundStar.StarObjects);
+            Engine.MoveProjectiles(Projectile.ProjectileObjects);
+            Engine.CkeckAsteroidCollision(Asteroid.AsteroidObjects);
+            Engine.MoveAsteroids(Asteroid.AsteroidObjects);
+            Engine.HandleProjectileDestruction(Projectile.ProjectileObjects, Asteroid.AsteroidObjects);
+            Engine.ExplodeAsteroidIfDamaged(Asteroid.AsteroidObjects);
+            Engine.CreateAsteroid(Asteroid.AsteroidObjects, minAsteroidNumber);
+            Engine.HandleShipCollision(AirCraft, Asteroid.AsteroidObjects);
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
@@ -142,7 +141,8 @@ namespace SpaceArcadeShooter
         private void SpaceArcadeShooter_Load(object sender, EventArgs e)
         {
             GameObject.Init();
-            //GraphicsHandler.Render();
+            Asteroid.AsteroidObjects = Asteroid.MakeAllAsteroids().ToList();
+            BackgroundStar.StarObjects = BackgroundStar.MakeStars();
         }
 
         public void SpaceArcadeShooter_Paint(object sender, PaintEventArgs e)
