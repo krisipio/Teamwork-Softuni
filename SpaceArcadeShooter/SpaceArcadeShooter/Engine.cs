@@ -37,7 +37,7 @@ namespace SpaceArcadeShooter
                 {
                     foreach (var asteroid in Asteroids.ToList())
                     {
-                        if (TwoObjectsCollide(projectile, asteroid))
+                        if (TwoObjectsCollide(projectile, asteroid) && !asteroid.hasExploded)
                         {
                             projectile.hasExploded = true;
                             asteroid.health -= projectile.damage;
