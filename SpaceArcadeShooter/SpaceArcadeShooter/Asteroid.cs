@@ -68,8 +68,8 @@ namespace SpaceArcadeShooter
         {
             if (offsetExplosion) // If true offset and set it to false.
             {
-                X = X - 100;
-                Y = Y - 100;
+                X = X + (img.Width / 2) - 120;
+                Y = Y + (img.Height / 2) - 120;
                 offsetExplosion = false;
             }
 

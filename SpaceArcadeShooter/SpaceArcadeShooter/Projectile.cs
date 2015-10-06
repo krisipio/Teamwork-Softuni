@@ -11,9 +11,10 @@ namespace SpaceArcadeShooter
         public int damage = 10;
         public static List<Projectile> ProjectileObjects = new List<Projectile>();
 
-        public Projectile(int X, int Y) : base(X, Y, @"Ammo\Lazer2.png")
+        public Projectile(int X, int Y) : base(X, Y, @"Ammo\Lazer3.png")
         {
             Yspeed = -20;
+            this.X = X + 23; // Offset the lazer so it shoots from the proper position.
             hasExploded = false;
         }
 
