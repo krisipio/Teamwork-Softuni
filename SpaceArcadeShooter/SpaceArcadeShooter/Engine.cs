@@ -7,9 +7,8 @@ using System.Drawing;
 
 namespace SpaceArcadeShooter
 {
-    static class Engine
+    class Engine
     {
-
         internal static void HandleShipCollision(Spaceship airCraft, Asteroid[] asteroids, int collisionRadius)
         {
             if (!airCraft.hasColided)
@@ -28,6 +27,14 @@ namespace SpaceArcadeShooter
             }                       
         }
 
+        internal static void MoveProjectiles(List<Projectile> Projectiles)
+        {
+            foreach (var projectile in Projectiles)
+            {
+                projectile.MoveUp();
+            }
+        }
+
         internal static void MoveBackgroundStars(BackgroundStar[] Stars)
         {
             foreach (var star in Stars)
@@ -41,11 +48,11 @@ namespace SpaceArcadeShooter
             foreach (var asteroid in Asteroids)
             {
                 asteroid.Move();
-                asteroid.RotateImage(); // Not working yet.
+                //asteroid.RotateImage(); // Not implemented yet.
             }
         }
 
-        internal static void HandleCollision(GameObject firstCollider, GameObject secondCollider)
+        internal static void HandleAsteroidCollision(GameObject firstCollider, GameObject secondCollider)
         {
             int speedDivisor = 3; // Decrease the speed change from collision. It is too much without it.
             int collisionCooldown = 3000; // Max milliseconds before collission can occur again.
@@ -86,7 +93,7 @@ namespace SpaceArcadeShooter
             }
         }
         
-        internal static void HandleAsteroidCollision(Asteroid[] Asteroids, int collisionRadius)
+        internal static void CkeckAsteroidCollision(Asteroid[] Asteroids, int collisionRadius)
         {
             // Check for collisions between Asteroids
             for (int i = 0; i < Asteroids.Length; i++)
@@ -95,7 +102,7 @@ namespace SpaceArcadeShooter
                 {
                     if ((i != j) && Engine.TwoObjectsCollide(Asteroids[i], Asteroids[j], collisionRadius))
                     {
-                        Engine.HandleCollision(Asteroids[i], Asteroids[j]);
+                        Engine.HandleAsteroidCollision(Asteroids[i], Asteroids[j]);
                     }
                 }
             }
@@ -105,8 +112,8 @@ namespace SpaceArcadeShooter
         {
             if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),          // Try to get the center of each image
                                       firstObject.Y + (firstObject.img.Height / 2),         // not the upper left corner
-                                      secondObject.X + (secondObject.img.Width / 2 + 10),   // +10 for the ship
-                                      secondObject.Y + (secondObject.img.Height / 2),       // Maybe add another method for the rest
+                                      secondObject.X + (secondObject.img.Width / 2 + 20),   // +20 for better ship collision
+                                      secondObject.Y + (secondObject.img.Height / 2),
                                       collisionRadius))
             {
                 return true;

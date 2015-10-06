@@ -35,7 +35,7 @@ namespace SpaceArcadeShooter
         }
 
         private static int explosionCounter = 0;
-        private static int explosionLastFrame = 25; // How many frames the explosion has.
+        private static int explosionLastFrame = 26; // How many frames the explosion has.
         private string ExplosionPath = string.Empty; // Placeholder.
         private bool offsetExplosion = true; // Offset the explosion and set it to false so it happens only once.
         public static Image[] explosionImageFrames = new Image[27];

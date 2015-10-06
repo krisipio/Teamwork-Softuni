@@ -17,13 +17,14 @@ namespace SpaceArcadeShooter
         private static bool left { get; set; }
         private static bool up { get; set; }
         private static bool down { get; set; }
+        private static bool shoot { get; set; }
 
         private static int collisionRadius = 100;
         
         static Background Space = new Background(0, -6000, @"Space\Background.png");
         static BackgroundStar[] Stars = BackgroundStar.MakeStars();
         static Asteroid[] Asteroids = Asteroid.MakeAsteroids();
-
+        static List<Projectile> Projectiles = new List<Projectile>();
 
         static Spaceship AirCraft = new Spaceship(400, 540);
         //static Explosion Boom = new Explosion(50, 50, @"Explosion\0025.png");
@@ -52,6 +53,10 @@ namespace SpaceArcadeShooter
             {
                 down = true;
             }
+            if (e.KeyCode == Keys.Space)
+            {
+                shoot = true;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -76,11 +81,16 @@ namespace SpaceArcadeShooter
                 {
                     AirCraft.MofeLeft();
                 }
+                if (shoot)
+                {
+                    AirCraft.Shoot(Projectiles, AirCraft.X, AirCraft.Y);
+                }
             }         
                   
             Space.MoveTo(Space.X, Space.Y + 1);
             Engine.MoveBackgroundStars(Stars);
-            Engine.HandleAsteroidCollision(Asteroids, collisionRadius);
+            Engine.MoveProjectiles(Projectiles);
+            Engine.CkeckAsteroidCollision(Asteroids, collisionRadius);
             Engine.MoveAsteroids(Asteroids);
             Engine.HandleShipCollision(AirCraft, Asteroids, collisionRadius);
         }
@@ -119,6 +129,10 @@ namespace SpaceArcadeShooter
                 {
                     AirCraft.MoveStop();
                 }
+            }
+            if (e.KeyCode == Keys.Space)
+            {
+                shoot = false;
             }
         }
 

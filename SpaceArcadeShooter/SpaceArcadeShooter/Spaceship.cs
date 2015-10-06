@@ -47,14 +47,16 @@ namespace SpaceArcadeShooter
             }
         }
 
+        internal void Shoot(List<Projectile> Projectiles, int X, int Y)
+        {
+            Projectiles.Add(new Projectile(X, Y));
+        }
+
         internal void MoveRight()
         {
-            if (!hasColided)
-            {
-                MoveTo(X + 5, Y);
-                ImagePath = @"\Resources\ShipRotation\0134.png"; //change img Path to right rotation frame
-                img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);
-            }            
+            MoveTo(X + 5, Y);
+            ImagePath = @"\Resources\ShipRotation\0134.png"; //change img Path to right rotation frame
+            img = Image.FromFile(Directory.GetCurrentDirectory() + ImagePath);        
         }
 
         internal void MofeLeft()
