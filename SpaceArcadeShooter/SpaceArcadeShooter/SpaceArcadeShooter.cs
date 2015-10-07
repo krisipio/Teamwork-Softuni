@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -97,7 +98,8 @@ namespace SpaceArcadeShooter
             Engine.CreateAsteroid(Asteroid.AsteroidObjects, minAsteroidNumber);
             Engine.HandleShipCollision(AirCraft, Asteroid.AsteroidObjects);
 
-            AirCraft.score += (uint)tempPoints;
+            AirCraft.score += (uint)(tempPoints / 10);
+            ScoreLabel.Text = AirCraft.score.ToString().PadLeft(10, '0');
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
@@ -143,6 +145,14 @@ namespace SpaceArcadeShooter
 
         private void SpaceArcadeShooter_Load(object sender, EventArgs e)
         {
+            PrivateFontCollection pfc = new PrivateFontCollection();
+
+            //pfc.AddFontFile(Directory.GetCurrentDirectory() + @"\Resources\Font\ka1.ttf");
+            //ScoreLabel.Font = new Font(pfc.Families[0], 16, FontStyle.Regular);
+
+            pfc.AddFontFile(Directory.GetCurrentDirectory() + @"\Resources\Font\dn.ttf");
+            ScoreLabel.Font = new Font(pfc.Families[0], 32, FontStyle.Regular);
+
             GameObject.Init();
             Asteroid.AsteroidObjects = Asteroid.MakeStartingAsteroids().ToList();
             BackgroundStar.StarObjects = BackgroundStar.MakeStars();
