@@ -17,13 +17,14 @@ namespace SpaceArcadeShooter
             }
         }
 
-        internal static void ExplodeAsteroidIfDamaged(List<Asteroid> Asteroids)
+        internal static void ExplodeAsteroidIfDamaged(List<Asteroid> Asteroids, ref int points)
         {
             foreach (var asteroid in Asteroids.ToList())
             {
                 if (asteroid.health <= 0)
                 {
                     asteroid.hasExploded = true;
+                    points = asteroid.pointsOnDestruction;
                     asteroid.Explode();                    
                 }
             }
@@ -96,7 +97,7 @@ namespace SpaceArcadeShooter
 
         internal static void HandleAsteroidCollision(GameObject firstCollider, GameObject secondCollider)
         {
-            int speedDivisor = 3; // Decrease the speed change from collision. It is too much without it.
+            int speedDivisor = 2; // Decrease the speed change from collision. It is too much without it.
             int collisionCooldown = 3000; // Max milliseconds before collission can occur again.
 
             if (firstCollider.collisionTimer.ElapsedMilliseconds > collisionCooldown &&

@@ -21,12 +21,11 @@ namespace SpaceArcadeShooter
 
         private static int minAsteroidNumber = 20;
                 
-        public static Background SpaceBackground = new Background(0, -6000, @"Space\Background.png");
+        static Background SpaceBackground = new Background(0, -6000, @"Space\Background.png");
         
         
 
-        static Spaceship AirCraft = new Spaceship(400, 540);
-        //static Explosion Boom = new Explosion(50, 50, @"Explosion\0025.png");
+        public static Spaceship AirCraft = new Spaceship(400, 540);
 
         public SpaceArcadeShooter()
         {
@@ -84,17 +83,21 @@ namespace SpaceArcadeShooter
                 {
                     AirCraft.Shoot(Projectile.ProjectileObjects, AirCraft.X, AirCraft.Y);
                 }
-            }         
-                  
+            }
+
+            int tempPoints = 0;
+
             SpaceBackground.MoveTo(SpaceBackground.X, SpaceBackground.Y + 1);
             Engine.MoveBackgroundStars(BackgroundStar.StarObjects);
             Engine.MoveProjectiles(Projectile.ProjectileObjects);
             Engine.CkeckAsteroidCollision(Asteroid.AsteroidObjects);
             Engine.MoveAsteroids(Asteroid.AsteroidObjects);
             Engine.HandleProjectileDestruction(Projectile.ProjectileObjects, Asteroid.AsteroidObjects);
-            Engine.ExplodeAsteroidIfDamaged(Asteroid.AsteroidObjects);
+            Engine.ExplodeAsteroidIfDamaged(Asteroid.AsteroidObjects, ref tempPoints);
             Engine.CreateAsteroid(Asteroid.AsteroidObjects, minAsteroidNumber);
             Engine.HandleShipCollision(AirCraft, Asteroid.AsteroidObjects);
+
+            AirCraft.score += (uint)tempPoints;
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
@@ -141,7 +144,7 @@ namespace SpaceArcadeShooter
         private void SpaceArcadeShooter_Load(object sender, EventArgs e)
         {
             GameObject.Init();
-            Asteroid.AsteroidObjects = Asteroid.MakeAllAsteroids().ToList();
+            Asteroid.AsteroidObjects = Asteroid.MakeStartingAsteroids().ToList();
             BackgroundStar.StarObjects = BackgroundStar.MakeStars();
         }
 

@@ -15,6 +15,7 @@ namespace SpaceArcadeShooter
         private int explosionLastFrame = 26; // How many frames the explosion has.
         public int health { get; set; }
         public int ammoCount { get; set; }
+        public uint score { get; set; }
 
         public Spaceship(int X, int Y) : base(X, Y, @"ShipRotation\0001.png")
         {
@@ -22,6 +23,7 @@ namespace SpaceArcadeShooter
             hasExploded = false;
             health = 100;
             ammoCount = 100;
+            score = 0;
         }
         
         public void Explore()

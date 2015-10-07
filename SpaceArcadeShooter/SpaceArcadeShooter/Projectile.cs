@@ -22,7 +22,7 @@ namespace SpaceArcadeShooter
         {
             Y += Yspeed;
 
-            if (Y < -400)
+            if (Y < 0)
             {
                 Disappear();
                 ProjectileObjects.Remove(this);

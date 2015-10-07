@@ -11,6 +11,7 @@ namespace SpaceArcadeShooter
     {
         static Random RNG = new Random();
         public int health { get; set; }
+        public int pointsOnDestruction { get; set; }
         public int startPosition = RNG.Next(0, 700);
 
         const int maxLeftSpeed = -3;
@@ -32,6 +33,7 @@ namespace SpaceArcadeShooter
             this.Y = RNG.Next(-1600, -200);
 
             health = img.Height + img.Width;
+            pointsOnDestruction = health;
         }
 
         public void Move()
@@ -118,7 +120,7 @@ namespace SpaceArcadeShooter
             return new Asteroid(0, 0, asteroidPaths[RNG.Next(0, asteroidPaths.Length)]);
         }
 
-        public static Asteroid[] MakeAllAsteroids()
+        public static Asteroid[] MakeStartingAsteroids()
         {
             Asteroid[] Asteroids = new Asteroid[asteroidPaths.Length];
 
