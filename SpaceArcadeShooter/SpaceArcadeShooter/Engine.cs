@@ -9,6 +9,28 @@ namespace SpaceArcadeShooter
 {
     class Engine
     {
+        internal static void HandleAmmoCollecting(Spaceship airCraft, List<AmmoCrate> crates)
+        {
+            foreach (var crate in crates.ToList())
+            {
+                if (TwoObjectsCollide(airCraft, crate))
+                {
+                    airCraft.ammoCount += crate.amountContained;
+                    crate.Collected();
+                }
+            }
+        }
+
+        internal static void SpawnAndMoveAmmoCrates(int chancePerTimerTick, int ammoContained)
+        {
+            AmmoCrate.SpawnByChance(chancePerTimerTick, ammoContained);
+
+            foreach (var ammoCrate in AmmoCrate.AmmoObjects.ToList())
+            {
+                ammoCrate.Move();
+            }
+        }
+        
         internal static void CreateAsteroid(List<Asteroid> Asteroids, int minAsteroidNumber)
         {
             if (Asteroids.Count < minAsteroidNumber)
@@ -97,7 +119,7 @@ namespace SpaceArcadeShooter
 
         internal static void HandleAsteroidCollision(GameObject firstCollider, GameObject secondCollider)
         {
-            int speedDivisor = 2; // Decrease the speed change from collision. It is too much without it.
+            int speedDivisor = 3; // Decrease the speed change from collision. It is too much without it.
             int collisionCooldown = 3000; // Max milliseconds before collission can occur again.
 
             if (firstCollider.collisionTimer.ElapsedMilliseconds > collisionCooldown &&
@@ -153,8 +175,8 @@ namespace SpaceArcadeShooter
 
         internal static bool TwoObjectsCollide(GameObject firstObject, GameObject secondObject)
         {
-            if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),          // Try to get the center of each image
-                                      firstObject.Y + (firstObject.img.Height / 2),         // not the upper left corner
+            if (IsPointInCircleRadius(firstObject.X + (firstObject.img.Width / 2),   // Try to get the center of each image
+                                      firstObject.Y + (firstObject.img.Height / 2),  // not the upper left corner
                                       secondObject.X + (secondObject.img.Width / 2),
                                       secondObject.Y + (secondObject.img.Height / 2),
                                       secondObject.collisionRadius))

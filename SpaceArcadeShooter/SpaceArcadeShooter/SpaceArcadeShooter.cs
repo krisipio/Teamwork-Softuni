@@ -89,6 +89,7 @@ namespace SpaceArcadeShooter
             int tempPoints = 0;
 
             SpaceBackground.MoveTo(SpaceBackground.X, SpaceBackground.Y + 1);
+
             Engine.MoveBackgroundStars(BackgroundStar.StarObjects);
             Engine.MoveProjectiles(Projectile.ProjectileObjects);
             Engine.CkeckAsteroidCollision(Asteroid.AsteroidObjects);
@@ -97,9 +98,12 @@ namespace SpaceArcadeShooter
             Engine.ExplodeAsteroidIfDamaged(Asteroid.AsteroidObjects, ref tempPoints);
             Engine.CreateAsteroid(Asteroid.AsteroidObjects, minAsteroidNumber);
             Engine.HandleShipCollision(AirCraft, Asteroid.AsteroidObjects);
+            Engine.SpawnAndMoveAmmoCrates(2, 300); // 2 out of 1000 chance to spawn per tick. 300 ammo contained.
+            Engine.HandleAmmoCollecting(AirCraft, AmmoCrate.AmmoObjects);
 
             AirCraft.score += (uint)(tempPoints / 10);
             ScoreLabel.Text = AirCraft.score.ToString().PadLeft(10, '0');
+            AmmoLabel.Text = "Ammo: " + AirCraft.ammoCount;
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
@@ -149,9 +153,11 @@ namespace SpaceArcadeShooter
 
             //pfc.AddFontFile(Directory.GetCurrentDirectory() + @"\Resources\Font\ka1.ttf");
             //ScoreLabel.Font = new Font(pfc.Families[0], 16, FontStyle.Regular);
+            //AmmoLabel.Font = new Font(pfc.Families[0], 16, FontStyle.Regular);
 
             pfc.AddFontFile(Directory.GetCurrentDirectory() + @"\Resources\Font\dn.ttf");
             ScoreLabel.Font = new Font(pfc.Families[0], 32, FontStyle.Regular);
+            AmmoLabel.Font = new Font(pfc.Families[0], 32, FontStyle.Regular);
 
             GameObject.Init();
             Asteroid.AsteroidObjects = Asteroid.MakeStartingAsteroids().ToList();

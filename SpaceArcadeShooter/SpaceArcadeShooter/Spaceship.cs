@@ -22,7 +22,7 @@ namespace SpaceArcadeShooter
             collisionTimer.Start();
             hasExploded = false;
             health = 100;
-            ammoCount = 100;
+            ammoCount = 300;
             score = 0;
         }
         
@@ -75,7 +75,12 @@ namespace SpaceArcadeShooter
 
         internal void Shoot(List<Projectile> Projectiles, int X, int Y)
         {
-            Projectiles.Add(new Projectile(X, Y));
+            if (ammoCount > 0)
+            {
+                Projectiles.Add(new Projectile(X, Y));
+                ammoCount--;
+            }
+            
         }
 
         internal void MoveRight()

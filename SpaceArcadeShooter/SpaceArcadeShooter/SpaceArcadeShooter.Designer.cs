@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ScoreLabel = new System.Windows.Forms.Label();
+            this.AmmoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -43,14 +44,23 @@
             // 
             this.ScoreLabel.AutoSize = true;
             this.ScoreLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ScoreLabel.ForeColor = System.Drawing.Color.White;
             this.ScoreLabel.Location = new System.Drawing.Point(638, 9);
             this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ScoreLabel.Size = new System.Drawing.Size(99, 20);
+            this.ScoreLabel.Size = new System.Drawing.Size(67, 13);
             this.ScoreLabel.TabIndex = 0;
             this.ScoreLabel.Text = "0000000000";
+            // 
+            // AmmoLabel
+            // 
+            this.AmmoLabel.AutoSize = true;
+            this.AmmoLabel.BackColor = System.Drawing.Color.Transparent;
+            this.AmmoLabel.ForeColor = System.Drawing.Color.White;
+            this.AmmoLabel.Location = new System.Drawing.Point(638, 636);
+            this.AmmoLabel.Name = "AmmoLabel";
+            this.AmmoLabel.Size = new System.Drawing.Size(48, 13);
+            this.AmmoLabel.TabIndex = 1;
+            this.AmmoLabel.Text = "Ammo: 0";
             // 
             // SpaceArcadeShooter
             // 
@@ -58,6 +68,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(848, 670);
+            this.Controls.Add(this.AmmoLabel);
             this.Controls.Add(this.ScoreLabel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -76,6 +87,7 @@
         #endregion
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label ScoreLabel;
+        private System.Windows.Forms.Label AmmoLabel;
     }
 }
 

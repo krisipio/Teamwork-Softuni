@@ -35,13 +35,7 @@ namespace SpaceArcadeShooter
             AllObjects.Remove(this);
         }
 
-        
-        private string ExplosionPath = string.Empty; // Placeholder.
-        
         public static Image[] explosionImageFrames = new Image[27];
-
-        
-
         public static void Init()
         {
             for (int i = 0; i < explosionImageFrames.Length; i++)
