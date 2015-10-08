@@ -85,6 +85,7 @@
             this.GameOverLabel.Size = new System.Drawing.Size(71, 13);
             this.GameOverLabel.TabIndex = 3;
             this.GameOverLabel.Text = "GAME OVER";
+            this.GameOverLabel.Click += new System.EventHandler(this.GameOverLabel_Click);
             // 
             // SpaceArcadeShooter
             // 

@@ -9,6 +9,14 @@ namespace SpaceArcadeShooter
 {
     class Engine
     {
+        internal static void ClearAsteroids(List<Asteroid> Asteroids)
+        {
+            foreach (var asteroid in Asteroids.ToList())
+            {
+                asteroid.health = 0;
+            }
+        }
+
         internal static void HandleAmmoCollecting(Spaceship airCraft, List<AmmoCrate> crates)
         {
             foreach (var crate in crates.ToList())

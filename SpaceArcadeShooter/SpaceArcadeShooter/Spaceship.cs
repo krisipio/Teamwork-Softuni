@@ -69,7 +69,6 @@ namespace SpaceArcadeShooter
             else
             {
                 Disappear();
-                Y = 790;
             }
         }
 
