@@ -104,6 +104,11 @@ namespace SpaceArcadeShooter
             AirCraft.score += (uint)(tempPoints / 10);
             ScoreLabel.Text = AirCraft.score.ToString().PadLeft(10, '0');
             AmmoLabel.Text = "Ammo: " + AirCraft.ammoCount;
+
+            if (AirCraft.hasExploded)
+            {
+                GameOverLabel.Show();
+            }
         }
 
         private void SpaceArcadeShooter_KeyUp(object sender, KeyEventArgs e)
@@ -149,6 +154,9 @@ namespace SpaceArcadeShooter
 
         private void SpaceArcadeShooter_Load(object sender, EventArgs e)
         {
+            GameOverLabel.Hide();
+            timer1.Stop();
+
             PrivateFontCollection pfc = new PrivateFontCollection();
 
             //pfc.AddFontFile(Directory.GetCurrentDirectory() + @"\Resources\Font\ka1.ttf");
@@ -158,6 +166,12 @@ namespace SpaceArcadeShooter
             pfc.AddFontFile(Directory.GetCurrentDirectory() + @"\Resources\Font\dn.ttf");
             ScoreLabel.Font = new Font(pfc.Families[0], 32, FontStyle.Regular);
             AmmoLabel.Font = new Font(pfc.Families[0], 32, FontStyle.Regular);
+
+            Color BlackOpaqueColor = Color.FromArgb(100, Color.Black);
+            PlayLabel.Font = new Font(pfc.Families[0], 64, FontStyle.Regular);
+            PlayLabel.BackColor = BlackOpaqueColor;
+            GameOverLabel.Font = new Font(pfc.Families[0], 96, FontStyle.Regular);
+            GameOverLabel.BackColor = BlackOpaqueColor;
 
             GameObject.Init();
             Asteroid.AsteroidObjects = Asteroid.MakeStartingAsteroids().ToList();
@@ -171,6 +185,12 @@ namespace SpaceArcadeShooter
             {
                 e.Graphics.DrawImage(GameObj.img, new Point(GameObj.X, GameObj.Y));
             }
+        }
+
+        private void PlayLabel_Click(object sender, EventArgs e)
+        {
+            timer1.Start();
+            PlayLabel.Hide();
         }
     }
 }

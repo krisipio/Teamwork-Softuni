@@ -32,6 +32,8 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.AmmoLabel = new System.Windows.Forms.Label();
+            this.PlayLabel = new System.Windows.Forms.Label();
+            this.GameOverLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // timer1
@@ -62,12 +64,36 @@
             this.AmmoLabel.TabIndex = 1;
             this.AmmoLabel.Text = "Ammo: 0";
             // 
+            // PlayLabel
+            // 
+            this.PlayLabel.AutoSize = true;
+            this.PlayLabel.ForeColor = System.Drawing.Color.White;
+            this.PlayLabel.Location = new System.Drawing.Point(352, 235);
+            this.PlayLabel.Name = "PlayLabel";
+            this.PlayLabel.Size = new System.Drawing.Size(34, 13);
+            this.PlayLabel.TabIndex = 2;
+            this.PlayLabel.Text = "PLAY";
+            this.PlayLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PlayLabel.Click += new System.EventHandler(this.PlayLabel_Click);
+            // 
+            // GameOverLabel
+            // 
+            this.GameOverLabel.AutoSize = true;
+            this.GameOverLabel.ForeColor = System.Drawing.Color.White;
+            this.GameOverLabel.Location = new System.Drawing.Point(178, 87);
+            this.GameOverLabel.Name = "GameOverLabel";
+            this.GameOverLabel.Size = new System.Drawing.Size(71, 13);
+            this.GameOverLabel.TabIndex = 3;
+            this.GameOverLabel.Text = "GAME OVER";
+            // 
             // SpaceArcadeShooter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(848, 670);
+            this.Controls.Add(this.GameOverLabel);
+            this.Controls.Add(this.PlayLabel);
             this.Controls.Add(this.AmmoLabel);
             this.Controls.Add(this.ScoreLabel);
             this.DoubleBuffered = true;
@@ -88,6 +114,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label ScoreLabel;
         private System.Windows.Forms.Label AmmoLabel;
+        private System.Windows.Forms.Label PlayLabel;
+        private System.Windows.Forms.Label GameOverLabel;
     }
 }
 
