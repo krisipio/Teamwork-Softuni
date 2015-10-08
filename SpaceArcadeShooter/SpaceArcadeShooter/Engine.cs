@@ -13,7 +13,7 @@ namespace SpaceArcadeShooter
         {
             foreach (var crate in crates.ToList())
             {
-                if (TwoObjectsCollide(airCraft, crate))
+                if (IsObjectCenterInsideRectanlge(airCraft, crate))
                 {
                     airCraft.ammoCount += crate.amountContained;
                     crate.Collected();
@@ -189,9 +189,37 @@ namespace SpaceArcadeShooter
             }
         }
 
-        private static bool IsPointInCircleRadius (double pointX, double pointY, double circleX, double circleY, double circleR)
+        internal static bool IsPointInCircleRadius (double pointX, double pointY, double circleX, double circleY, double circleR)
         {
             if (Math.Pow(pointX - circleX, 2) + Math.Pow(pointY - circleY, 2) <= Math.Pow(circleR, 2))
+                return true;
+            else
+                return false;
+        }
+
+        internal static bool IsObjectCenterInsideRectanlge(GameObject firstObject, GameObject secondObject)
+        {
+            int rectangleSizeModifier = 50; // Increase the size of the rectangle.
+
+            if (isPointInRectangle(firstObject.X + (firstObject.img.Width / 2),
+                                   firstObject.Y + (firstObject.img.Height / 2),
+                                   secondObject.X - rectangleSizeModifier,
+                                   secondObject.Y - rectangleSizeModifier,
+                                   secondObject.img.Width + rectangleSizeModifier,
+                                   secondObject.img.Height + rectangleSizeModifier))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        internal static bool isPointInRectangle(double pointX, double pointY, double rektLeft, double rektTop, double rektWidth, double rektHeight)
+        {
+            if (pointY >= rektTop && pointY <= rektTop + rektHeight &&
+                pointX >= rektLeft && pointX <= rektLeft + rektWidth)
                 return true;
             else
                 return false;
