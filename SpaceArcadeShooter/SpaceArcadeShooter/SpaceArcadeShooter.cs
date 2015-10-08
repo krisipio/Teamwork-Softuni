@@ -98,7 +98,7 @@ namespace SpaceArcadeShooter
             Engine.ExplodeAsteroidIfDamaged(Asteroid.AsteroidObjects, ref tempPoints);
             Engine.CreateAsteroid(Asteroid.AsteroidObjects, minAsteroidNumber);
             Engine.HandleShipCollision(AirCraft, Asteroid.AsteroidObjects);
-            Engine.SpawnAndMoveAmmoCrates(2, 300); // 2 out of 1000 chance to spawn per tick. 300 ammo contained.
+            Engine.SpawnAndMoveAmmoCrates(((int)AmmoCrate.LastSpawned.ElapsedMilliseconds)/1000, 300); // 2 out of 1000 chance to spawn per tick. 300 ammo contained.
             Engine.HandleAmmoCollecting(AirCraft, AmmoCrate.AmmoObjects);
 
             AirCraft.score += (uint)(tempPoints / 10);
@@ -161,6 +161,7 @@ namespace SpaceArcadeShooter
 
             GameObject.Init();
             Asteroid.AsteroidObjects = Asteroid.MakeStartingAsteroids().ToList();
+            AmmoCrate.LastSpawned.Start();
             BackgroundStar.StarObjects = BackgroundStar.MakeStars();
         }
 

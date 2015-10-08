@@ -24,7 +24,7 @@ namespace SpaceArcadeShooter
         internal static void SpawnAndMoveAmmoCrates(int chancePerTimerTick, int ammoContained)
         {
             AmmoCrate.SpawnByChance(chancePerTimerTick, ammoContained);
-
+            
             foreach (var ammoCrate in AmmoCrate.AmmoObjects.ToList())
             {
                 ammoCrate.Move();

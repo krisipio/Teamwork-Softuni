@@ -52,7 +52,7 @@ namespace SpaceArcadeShooter
             this.Y = Y;
             this.ImagePath = ImagePath;
             img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\" + this.ImagePath);
-            collisionRadius = Math.Min(img.Width, img.Height) - 10;
+            collisionRadius = (int)Math.Sqrt( img.Width* img.Height)-10;
             AllObjects.Add(this);
         }
     }    

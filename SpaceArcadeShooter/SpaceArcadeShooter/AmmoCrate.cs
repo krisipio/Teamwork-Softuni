@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace SpaceArcadeShooter
         public int movement = RNG.Next(1, 3);
         public int startPosition = RNG.Next(0, 780);
         public static List<AmmoCrate> AmmoObjects = new List<AmmoCrate>();
+        public static Stopwatch LastSpawned = new Stopwatch();
 
         public AmmoCrate(int X, int Y, string imagePath, int AmmoCount) : base(X, Y, imagePath)
         {
@@ -43,6 +45,7 @@ namespace SpaceArcadeShooter
             if (RNG.Next(1, 1001) <= chancePerTimerTick && AmmoObjects.Count == 0)
             {
                 AmmoObjects.Add(new AmmoCrate(0, -100, @"\Ammo\AmmoCrateSmall.png", ammoContained));
+                AmmoCrate.LastSpawned.Restart();
             }
         }
     }
