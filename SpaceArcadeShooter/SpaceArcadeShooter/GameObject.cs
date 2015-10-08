@@ -51,6 +51,7 @@ namespace SpaceArcadeShooter
             this.X = X;
             this.Y = Y;
             this.ImagePath = ImagePath;
+            if(ImagePath!= @"Ammo\Lazer3.png")
             img = Image.FromFile(Directory.GetCurrentDirectory() + @"\Resources\" + this.ImagePath);
             collisionRadius = (int)Math.Sqrt( img.Width* img.Height)-10;
             AllObjects.Add(this);
