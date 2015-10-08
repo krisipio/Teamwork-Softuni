@@ -9,7 +9,7 @@ namespace SpaceArcadeShooter
 {
     class Engine
     {
-        internal static void ClearInteractiveObjects(List<Asteroid> Asteroids)
+        internal static void ClearInteractiveObjects(List<Asteroid> Asteroids, List<AmmoCrate> crates)
         {
             foreach (var asteroid in Asteroids.ToList())
             {
@@ -17,7 +17,7 @@ namespace SpaceArcadeShooter
                 asteroid.pointsOnDestruction = 0;
             }
 
-            foreach (var ammoCrate in AmmoCrate.AmmoObjects.ToList())
+            foreach (var ammoCrate in crates.ToList())
             {
                 ammoCrate.Remove();
             }

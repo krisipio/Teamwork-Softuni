@@ -196,7 +196,7 @@ namespace SpaceArcadeShooter
         private void GameOverLabel_Click(object sender, EventArgs e)
         {
             GameOverLabel.Hide();
-            Engine.ClearInteractiveObjects(Asteroid.AsteroidObjects);
+            Engine.ClearInteractiveObjects(Asteroid.AsteroidObjects, AmmoCrate.AmmoObjects);
             AirCraft = new Spaceship(400, 540);
         }
     }
