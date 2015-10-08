@@ -14,6 +14,7 @@ namespace SpaceArcadeShooter
             foreach (var asteroid in Asteroids.ToList())
             {
                 asteroid.health = 0;
+                asteroid.pointsOnDestruction = 0;
             }
         }
 

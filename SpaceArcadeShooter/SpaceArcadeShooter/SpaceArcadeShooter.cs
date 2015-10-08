@@ -197,7 +197,6 @@ namespace SpaceArcadeShooter
         {
             GameOverLabel.Hide();
             Engine.ClearAsteroids(Asteroid.AsteroidObjects);
-
             AirCraft = new Spaceship(400, 540);
         }
     }
