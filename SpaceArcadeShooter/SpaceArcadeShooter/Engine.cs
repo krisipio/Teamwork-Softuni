@@ -9,12 +9,17 @@ namespace SpaceArcadeShooter
 {
     class Engine
     {
-        internal static void ClearAsteroids(List<Asteroid> Asteroids)
+        internal static void ClearInteractiveObjects(List<Asteroid> Asteroids)
         {
             foreach (var asteroid in Asteroids.ToList())
             {
                 asteroid.health = 0;
                 asteroid.pointsOnDestruction = 0;
+            }
+
+            foreach (var ammoCrate in AmmoCrate.AmmoObjects.ToList())
+            {
+                ammoCrate.Remove();
             }
         }
 
@@ -25,7 +30,7 @@ namespace SpaceArcadeShooter
                 if (IsObjectCenterInsideRectanlge(airCraft, crate))
                 {
                     airCraft.ammoCount += crate.amountContained;
-                    crate.Collected();
+                    crate.Remove();
                 }
             }
         }

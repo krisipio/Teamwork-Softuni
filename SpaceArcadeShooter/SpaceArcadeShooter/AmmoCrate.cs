@@ -23,7 +23,7 @@ namespace SpaceArcadeShooter
             this.Y += movement + Y;
         }
 
-        public void Collected()
+        public void Remove()
         {
             Disappear();
             AmmoObjects.Remove(this);
